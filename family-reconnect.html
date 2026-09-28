@@ -1,0 +1,1661 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Family Reconnect</title>
+<meta name="description" content="Family Reconnect — bảo hiểm cho gia đình trẻ: bảo vệ tài chính dài hạn và Giờ chăm sóc khi bố mẹ cần nghỉ ngơi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" media="print" onload="this.media='all'; this.onload=null;">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap"></noscript>
+<style>
+/* =========================================================
+   0. DESIGN TOKENS — light (default), dark (system + toggle)
+   ========================================================= */
+:root{
+  --bg:#F7F8FA; --surface:#FFFFFF; --surface-2:#EFF1F5; --line:#E2E5EC;
+  --ink:#14223D; --ink-2:#44506A; --ink-3:#5B6580;
+  --navy:#1B2E52; --navy-ink:#FFFFFF; --navy-ink-2:#C9D2E3;
+  --coral:#C9982E; --on-coral:#14223D; --coral-soft:#E3BB63; --coral-tint:#F6ECD3; --coral-ink:#7A5A12;
+  --ok:#1D7550; --ok-tint:#DCEFE4;
+  --focus:#C9982E;
+  --card-accent:#E3BB63;
+  --shadow:0 1px 2px rgb(20 34 61 / .06), 0 10px 30px rgb(20 34 61 / .08);
+  --radius:14px; --radius-lg:22px;
+  --font-ui:"Be Vietnam Pro", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --font-display:"Fraunces", "Lora", Georgia, "Times New Roman", serif;
+  --gutter:clamp(16px, 4vw, 40px);
+  --maxw:1200px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1525; --surface:#141F35; --surface-2:#18243D; --line:#2A3A5A;
+    --ink:#F4EEE6; --ink-2:#BAC3D3; --ink-3:#A2ADC0;
+    --navy:#20345C; --navy-ink:#F4EEE6; --navy-ink-2:#C0CAE0;
+    --coral:#E3B94A; --on-coral:#0D1525; --coral-soft:#B98E2F; --coral-tint:#3A331C; --coral-ink:#F0CB6F;
+    --ok:#62CC99; --ok-tint:#143428;
+    --focus:#F0CB6F;
+    --shadow:0 1px 2px rgb(0 0 0 / .3), 0 10px 30px rgb(0 0 0 / .3);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1525; --surface:#141F35; --surface-2:#18243D; --line:#2A3A5A;
+  --ink:#F4EEE6; --ink-2:#BAC3D3; --ink-3:#A2ADC0;
+  --navy:#20345C; --navy-ink:#F4EEE6; --navy-ink-2:#C0CAE0;
+  --coral:#E3B94A; --on-coral:#0D1525; --coral-soft:#B98E2F; --coral-tint:#3A331C; --coral-ink:#F0CB6F;
+  --ok:#62CC99; --ok-tint:#143428;
+  --focus:#F0CB6F;
+  --shadow:0 1px 2px rgb(0 0 0 / .3), 0 10px 30px rgb(0 0 0 / .3);
+  color-scheme:dark;
+}
+
+/* =========================================================
+   1. BASE
+   ========================================================= */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth} }
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-ui);font-size:16px;line-height:1.6;overflow-x:hidden}
+img,svg{max-width:100%}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:500;line-height:1.18;margin:0;text-wrap:balance;letter-spacing:-.01em;font-optical-sizing:auto}
+p{margin:0}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+[hidden]{display:none!important}
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-60px;background:var(--navy);color:var(--navy-ink);padding:10px 16px;border-radius:10px;z-index:100}
+.skip:focus{top:12px}
+.num{font-variant-numeric:tabular-nums}
+
+/* Language pairs: content is authored twice, [data-l] hides the inactive one */
+#app[data-lang="vi"] [data-l="en"], #app[data-lang="en"] [data-l="vi"]{display:none!important}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+section{padding-block:clamp(64px, 9vw, 120px);scroll-margin-top:72px}
+.sec-alt{background:var(--surface-2)}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--coral-ink)}
+.sec-head{max-width:720px;display:grid;gap:14px;margin-bottom:clamp(32px,5vw,56px)}
+.sec-head h2{font-size:clamp(30px, 4.4vw, 48px)}
+.lead{font-size:clamp(17px,1.6vw,19px);color:var(--ink-2);max-width:62ch}
+.tag{justify-self:start;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--coral-tint);color:var(--coral-ink)}
+.tag.ok{background:var(--ok-tint);color:var(--ok)}
+.fine{font-size:14px;color:var(--ink-3)}
+
+/* Buttons — min 44px touch target */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:999px;border:1.5px solid transparent;font-weight:600;font-size:16px;text-decoration:none;cursor:pointer;transition:transform .15s ease, background-color .15s ease, box-shadow .15s ease}
+.btn-primary{background:var(--coral);color:var(--on-coral)}
+.btn-primary:hover{box-shadow:0 6px 18px rgb(200 71 47 / .28);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border-color:var(--ink);color:var(--ink)}
+.btn-ghost:hover{background:var(--surface)}
+.btn-sm{min-height:44px;padding:8px 16px;font-size:15px}
+
+/* Reveal on scroll — only elements below the fold at load are hidden */
+.reveal-pre{opacity:0;transform:translateY(14px)}
+.reveal-in{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal-pre{opacity:1;transform:none}
+}
+.defer{content-visibility:auto;contain-intrinsic-size:auto 900px}
+
+/* =========================================================
+   2. HEADER / NAV
+   ========================================================= */
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:16px;min-height:68px}
+.brand{white-space:nowrap;display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:17px;letter-spacing:-.01em;min-height:44px}
+.brand svg{flex:none}
+.nav-links{display:flex;gap:4px;margin-left:auto;list-style:none;padding:0;margin-block:0}
+.nav-links a{white-space:nowrap;display:flex;align-items:center;min-height:44px;padding:0 12px;border-radius:10px;text-decoration:none;font-size:15px;color:var(--ink-2);font-weight:500}
+.nav-links a:hover{color:var(--ink);background:var(--surface)}
+.nav-tools{display:flex;align-items:center;gap:6px}
+.icon-btn{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border-radius:12px;border:1px solid var(--line);background:var(--surface);cursor:pointer}
+.lang-switch{display:inline-flex;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:3px}
+.lang-switch button{min-width:44px;min-height:44px;border:0;background:transparent;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;color:var(--ink-2)}
+.lang-switch button[aria-pressed="true"]{background:var(--navy);color:var(--navy-ink)}
+.menu-btn{display:none}
+.nav-cta{white-space:nowrap}
+@media (max-width: 1240px){
+  .nav-links{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;background:var(--bg);border-bottom:1px solid var(--line);padding:8px var(--gutter) 16px;margin:0}
+  .nav-links.open{display:flex}
+  .nav-links a{font-size:17px}
+  .menu-btn{display:inline-flex}
+  .nav-tools{margin-left:auto}
+}
+@media (max-width: 560px){ .nav-cta{display:none} .brand span{font-size:16px} }
+@media (max-width: 400px){ .site-header .lang-switch{display:none} }
+
+/* =========================================================
+   3. HERO
+   ========================================================= */
+.hero{padding-block:clamp(40px,7vw,96px) clamp(56px,8vw,110px)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,72px);align-items:center}
+.hero h1{font-size:clamp(38px, 6vw, 68px);letter-spacing:-.02em}
+.hero h1 em{font-style:italic;color:var(--coral-ink)}
+.hero-copy{display:grid;gap:22px}
+.pillars{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.pillars span+span::before{content:"·";margin-right:14px;color:var(--coral)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.facts{display:flex;flex-wrap:wrap;gap:10px 24px;padding:0;margin:4px 0 0;list-style:none;font-size:15px;color:var(--ink-2)}
+.facts li{display:flex;align-items:center;gap:8px}
+.facts svg{color:var(--ok);flex:none}
+
+/* Care Wallet card (hero visual) */
+.wallet-stage{position:relative;display:grid;place-items:center;padding:clamp(8px,3vw,24px)}
+.wallet-stage::before{content:"";position:absolute;inset:6% 0 0 8%;background:var(--coral-tint);border-radius:44% 56% 52% 48% / 50% 44% 56% 50%}
+.wallet{position:relative;width:min(100%,420px);background:var(--navy);color:var(--navy-ink);border-radius:26px;padding:24px;box-shadow:0 24px 60px rgb(20 34 61 / .28);display:grid;gap:18px}
+.wallet-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.wallet-label{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--navy-ink-2);font-weight:600}
+.wallet-family{font-size:15px;margin-top:2px}
+.wallet-amount{display:flex;align-items:baseline;gap:8px}
+.wallet-amount strong{font-family:var(--font-display);font-weight:500;font-size:clamp(56px,9vw,76px);line-height:1;font-variant-numeric:tabular-nums}
+.wallet-amount span{font-size:18px;color:var(--navy-ink-2)}
+.meter{display:grid;grid-template-columns:repeat(20,1fr);gap:3px}
+.meter i{height:14px;border-radius:3px;background:rgb(255 255 255 / .14);transition:background-color .25s ease}
+.meter i.on{background:var(--card-accent)}
+.wallet-event{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-radius:14px;background:rgb(255 255 255 / .08);font-size:14px}
+.wallet-event b{color:var(--card-accent);white-space:nowrap}
+.wallet-status{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;background:#DCEFE4;color:#16603F;white-space:nowrap}
+.wallet-services{display:flex;flex-wrap:wrap;gap:6px}
+.wallet-services span{font-size:13px;padding:6px 10px;border-radius:999px;border:1px solid rgb(255 255 255 / .22)}
+.wallet-note{font-size:12px;color:var(--navy-ink-2)}
+@media (max-width: 900px){ .hero-grid{grid-template-columns:1fr} .wallet-stage{order:2} }
+
+/* =========================================================
+   4. PROBLEM — 3-day timeline
+   ========================================================= */
+.problem-grid{display:grid;grid-template-columns:1fr 320px;gap:clamp(24px,4vw,56px);align-items:start}
+.timeline{list-style:none;margin:0;padding:0;display:grid;gap:0;position:relative}
+.day{display:grid;grid-template-columns:88px 1fr;gap:20px;padding-bottom:28px;position:relative}
+.day::before{content:"";position:absolute;left:43px;top:44px;bottom:0;width:2px;background:var(--line)}
+.day:last-child::before{display:none}
+.day-badge{width:88px;height:44px;border-radius:999px;background:var(--navy);color:var(--navy-ink);display:grid;place-items:center;font-weight:600;font-size:14px;position:relative;z-index:1}
+.day-body{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;display:grid;gap:12px}
+.day-body h3{font-size:21px}
+.losses{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.losses li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:15px;color:var(--ink-2)}
+.losses li svg{color:var(--coral);margin-top:3px}
+.time{font-variant-numeric:tabular-nums;font-weight:600;color:var(--ink)}
+.stat-card{position:sticky;top:96px;background:var(--navy);color:var(--navy-ink);border-radius:var(--radius-lg);padding:28px;display:grid;gap:12px}
+.stat-card .big{font-family:var(--font-display);font-size:72px;line-height:1;color:var(--card-accent)}
+.stat-card p{color:var(--navy-ink-2)}
+.stat-card .src{font-size:13px;color:var(--navy-ink-2);border-top:1px solid rgb(255 255 255 / .16);padding-top:12px}
+.problem-close{margin-top:12px;font-family:var(--font-display);font-size:clamp(22px,2.6vw,30px);max-width:30ch;line-height:1.3}
+@media (max-width: 900px){ .problem-grid{grid-template-columns:1fr} .stat-card{position:static} }
+@media (max-width: 480px){ .day{grid-template-columns:1fr;gap:10px} .day::before{display:none} .day-badge{width:auto;justify-self:start;padding:0 16px} }
+
+/* =========================================================
+   5. PROTECTION CONTINUUM
+   ========================================================= */
+.continuum{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:clamp(20px,3vw,36px);display:grid;gap:28px}
+.scale{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.scale::before{content:"";position:absolute;left:12%;right:12%;top:22px;height:4px;border-radius:2px;background:linear-gradient(90deg, var(--ok), var(--coral-soft) 55%, var(--navy))}
+.stage{position:relative;display:grid;justify-items:center;gap:10px;text-align:center;background:none;border:0;padding:0 4px 8px;cursor:pointer;min-height:44px;border-radius:12px}
+.stage .dot{width:48px;height:48px;border-radius:50%;background:var(--surface);border:3px solid var(--line);display:grid;place-items:center;font-weight:700;font-size:14px;transition:all .2s ease}
+.stage[aria-pressed="true"] .dot{background:var(--navy);border-color:var(--navy);color:var(--navy-ink);transform:scale(1.08)}
+.stage .s-name{font-weight:600;font-size:15px;line-height:1.3}
+.stage .s-eg{font-size:13px;color:var(--ink-3);line-height:1.4}
+.layers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.layer{border:1.5px solid var(--line);border-radius:var(--radius);padding:18px;display:grid;gap:8px;align-content:start;transition:all .25s ease;background:var(--bg)}
+.layer .l-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.layer .l-kicker{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.layer h3{font-size:19px}
+.layer .l-what{font-size:15px;color:var(--ink-2)}
+.layer .state{font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-3);white-space:nowrap}
+.layer.active{border-color:var(--ok);background:var(--surface);box-shadow:var(--shadow)}
+.layer.active .state{background:var(--ok-tint);color:var(--ok)}
+.layer:not(.active){opacity:.94}
+@media (max-width: 820px){
+  .scale{grid-template-columns:repeat(2,1fr);row-gap:18px}
+  .scale::before{display:none}
+  .layers{grid-template-columns:1fr}
+}
+
+/* =========================================================
+   6. CARE WALLET — tabs, ladder, Pathway B demo
+   ========================================================= */
+.tabs{display:inline-flex;flex-wrap:wrap;gap:6px;padding:5px;border-radius:16px;background:var(--surface);border:1px solid var(--line);margin-bottom:28px}
+.tab{min-height:48px;padding:10px 18px;border:0;border-radius:12px;background:transparent;cursor:pointer;font-weight:600;font-size:15px;color:var(--ink-2);text-align:left}
+.tab small{display:block;font-weight:500;font-size:12px;color:var(--ink-3)}
+.tab[aria-selected="true"]{background:var(--navy);color:var(--navy-ink)}
+.tab[aria-selected="true"] small{color:var(--navy-ink-2)}
+.panel-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(20px,3vw,40px);align-items:start}
+.ladder{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.rung{display:grid;grid-template-columns:minmax(0,1fr) 88px;gap:8px 16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px}
+.rung .r-when{font-weight:600}
+.rung .r-sub{font-size:14px;color:var(--ink-3);font-weight:400}
+.rung .r-hours{text-align:right;font-family:var(--font-display);font-size:30px;line-height:1;font-variant-numeric:tabular-nums}
+.rung .r-hours small{font-family:var(--font-ui);font-size:14px;color:var(--ink-3);margin-left:3px}
+.rung .track{grid-column:1 / -1;height:8px;border-radius:4px;background:var(--surface-2);overflow:hidden}
+.rung .track span{display:block;height:100%;border-radius:4px;background:var(--coral);width:0;transition:width .9s cubic-bezier(.2,.7,.2,1)}
+.rung.emergency{background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}
+.rung.emergency .r-sub, .rung.emergency .r-hours small{color:var(--navy-ink-2)}
+.rung.emergency .track{background:rgb(255 255 255 / .14)}
+.rung.emergency .track span{background:var(--card-accent)}
+.rung.child .track span{background:var(--ok)}
+.aside-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px;display:grid;gap:14px}
+.aside-card h3{font-size:21px}
+.aside-card ul{margin:0;padding-left:20px;display:grid;gap:8px;color:var(--ink-2);font-size:15px}
+
+/* Pathway B demo */
+.acts{display:grid;gap:10px}
+.act{border:1px solid var(--line);background:var(--surface);border-radius:var(--radius);padding:14px 16px;margin:0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 16px;align-items:center}
+.act legend{float:left;padding:0;font-weight:600;font-size:15px;line-height:1.35}
+.act legend small{display:block;font-weight:400;color:var(--ink-3);font-size:13px}
+.seg{display:grid;grid-template-columns:repeat(4,44px);gap:4px;border-radius:12px}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{display:grid;place-items:center;min-height:44px;border-radius:10px;border:1px solid var(--line);font-weight:700;font-size:14px;cursor:pointer;background:var(--bg);transition:background-color .15s ease}
+.seg input:checked + label{background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}
+.seg input:focus-visible + label{outline:3px solid var(--focus);outline-offset:2px}
+.levels-key{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-3);margin-bottom:12px}
+.levels-key b{color:var(--ink)}
+.result{position:sticky;top:92px;background:var(--navy);color:var(--navy-ink);border-radius:var(--radius-lg);padding:24px;display:grid;gap:16px}
+.result .r-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.result .r-label{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--navy-ink-2);font-weight:600}
+.result .r-score{font-variant-numeric:tabular-nums;font-weight:600}
+.result .r-big{font-family:var(--font-display);font-size:64px;line-height:1;font-variant-numeric:tabular-nums}
+.result .r-big small{font-family:var(--font-ui);font-size:18px;color:var(--navy-ink-2);margin-left:6px}
+.tier-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.tier-bar i{height:10px;border-radius:3px;background:rgb(255 255 255 / .14)}
+.tier-bar i.on{background:var(--card-accent)}
+.tier-ticks{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;font-size:11px;color:var(--navy-ink-2);font-variant-numeric:tabular-nums}
+.unlock{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.unlock li{display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 10px;border-radius:10px;background:rgb(255 255 255 / .06);color:var(--navy-ink-2)}
+.unlock li.on{background:rgb(255 255 255 / .12);color:var(--navy-ink)}
+.unlock li .chk{width:20px;height:20px;border-radius:50%;border:1.5px solid rgb(255 255 255 / .3);display:grid;place-items:center;flex:none}
+.unlock li.on .chk{background:#62CC99;border-color:#62CC99;color:#0D1525}
+.result .fine{color:var(--navy-ink-2)}
+@media (max-width: 900px){ .panel-grid{grid-template-columns:1fr} .result{position:static} }
+@media (max-width: 480px){ .act{grid-template-columns:1fr} .seg{grid-template-columns:repeat(4,1fr)} }
+
+/* =========================================================
+   7. SERVICES
+   ========================================================= */
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.svc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px;display:grid;gap:14px;align-content:start}
+.svc-ico{width:52px;height:52px;border-radius:16px;background:var(--coral-tint);color:var(--coral-ink);display:grid;place-items:center}
+.svc h3{font-size:22px}
+.svc ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:15px;color:var(--ink-2)}
+.svc .rate{font-size:14px;font-weight:600;padding-top:12px;border-top:1px dashed var(--line)}
+.svc .partner{font-size:13px;color:var(--ink-3)}
+.partners{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;font-size:15px;color:var(--ink-2)}
+.partners b{font-weight:600;color:var(--ink);padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+@media (max-width: 1080px){ .services{grid-template-columns:repeat(2,1fr)} }
+@media (max-width: 560px){ .services{grid-template-columns:1fr} }
+
+/* =========================================================
+   8. CLAIMS STEPPER + PHONE
+   ========================================================= */
+.claims-grid{display:grid;grid-template-columns:1fr 320px;gap:clamp(24px,5vw,72px);align-items:center}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:8px;counter-reset:s}
+.step-btn{width:100%;display:grid;grid-template-columns:44px 1fr;gap:14px;text-align:left;background:transparent;border:1px solid transparent;border-radius:var(--radius);padding:14px;cursor:pointer;align-items:start}
+.step-btn .n{width:44px;height:44px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-weight:700;background:var(--surface);transition:all .2s ease}
+.step-btn .t{font-weight:600;font-size:17px;display:block}
+.step-btn .d{font-size:15px;color:var(--ink-2);display:block;margin-top:2px}
+.step-btn.done .n{background:var(--ok);border-color:var(--ok);color:var(--surface)}
+.step-btn[aria-current="step"]{background:var(--surface);border-color:var(--line);box-shadow:var(--shadow)}
+.step-btn[aria-current="step"] .n{background:var(--navy);border-color:var(--navy);color:var(--navy-ink)}
+.progress{height:6px;border-radius:3px;background:var(--line);overflow:hidden;margin:6px 0 18px}
+.progress span{display:block;height:100%;background:var(--ok);width:20%;transition:width .4s ease}
+.step-nav{display:flex;gap:10px;margin-top:16px}
+.phone{justify-self:center;width:280px;max-width:100%;aspect-ratio:9/18.5;border-radius:40px;background:#0E1626;padding:10px;box-shadow:0 30px 60px rgb(20 34 61 / .3)}
+.screen{height:100%;border-radius:31px;background:#FAF6F0;color:#14223D;overflow:hidden;display:flex;flex-direction:column;position:relative}
+.screen .bar{display:flex;justify-content:space-between;font-size:11px;font-weight:600;padding:10px 20px 4px;font-variant-numeric:tabular-nums}
+.screen .app-h{padding:8px 18px 12px;font-weight:700;font-size:15px;border-bottom:1px solid #E3D8C8;display:flex;align-items:center;gap:8px}
+.screen .body{padding:14px 16px;display:grid;gap:10px;align-content:start;flex:1;font-size:13px;line-height:1.45}
+.scr{display:none;flex-direction:column;height:100%}
+.scr.on{display:flex;animation:fadeUp .35s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.m-card{background:#FFFFFF;border:1px solid #E3D8C8;border-radius:14px;padding:12px}
+.m-card.navy{background:#1B2E52;color:#FFFFFF;border-color:#1B2E52}
+.m-label{font-size:11px;color:#5B6580;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.m-card.navy .m-label{color:#C9D2E3}
+.m-opt{display:flex;align-items:center;gap:8px;padding:10px;border-radius:10px;border:1px solid #E3D8C8;background:#FFFFFF}
+.m-opt.sel{border-color:#1B2E52;box-shadow:inset 0 0 0 1px #1B2E52}
+.m-btn{margin-top:auto;background:#C8472F;color:#FFFFFF;text-align:center;border-radius:999px;padding:11px;font-weight:600;font-size:13px}
+.m-big{font-family:var(--font-display);font-size:40px;line-height:1;font-variant-numeric:tabular-nums}
+.m-meter{height:8px;border-radius:4px;background:rgb(255 255 255 / .18);overflow:hidden;margin-top:8px}
+.m-meter span{display:block;height:100%;background:#F29B85}
+.m-ok{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;padding:4px 8px;border-radius:999px;background:#DCEFE4;color:#16603F}
+.m-row{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.m-track{display:grid;gap:8px;padding-left:14px;border-left:2px solid #E3D8C8}
+.m-track div{position:relative}
+.m-track div::before{content:"";position:absolute;left:-20px;top:4px;width:10px;height:10px;border-radius:50%;background:#E3D8C8}
+.m-track div.done::before{background:#1D7550}
+.m-track div.now::before{background:#C8472F;box-shadow:0 0 0 4px #FBE4DB}
+.m-doc{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;background:#FFFFFF;border:1px dashed #C9BBA6}
+.m-map{height:92px;border-radius:12px;background:#E9EFE9;position:relative;overflow:hidden}
+@media (max-width: 900px){ .claims-grid{grid-template-columns:1fr} }
+
+/* =========================================================
+   9. ESTIMATOR
+   ========================================================= */
+.est{display:grid;grid-template-columns:1.1fr .9fr;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden}
+.est-in{padding:clamp(20px,3vw,36px);display:grid;gap:22px}
+.field{display:grid;gap:8px}
+.field > label, .field > .flabel{font-weight:600;font-size:15px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stepper{display:grid;grid-template-columns:44px 1fr 44px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg)}
+.stepper button{border:0;background:transparent;min-height:48px;font-size:20px;cursor:pointer}
+.stepper button:hover{background:var(--surface-2)}
+.stepper input{border:0;background:transparent;text-align:center;font-weight:600;font-size:17px;min-width:0;font-variant-numeric:tabular-nums;-moz-appearance:textfield}
+.stepper input::-webkit-inner-spin-button{-webkit-appearance:none}
+.range-out{display:flex;justify-content:space-between;align-items:baseline}
+.range-out output{font-family:var(--font-display);font-size:26px;font-variant-numeric:tabular-nums}
+input[type="range"]{width:100%;height:44px;accent-color:var(--coral);cursor:pointer;margin:0}
+.range-ends{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{min-height:44px;min-width:56px;padding:0 16px;display:grid;place-items:center;border-radius:12px;border:1px solid var(--line);background:var(--bg);font-weight:600;cursor:pointer}
+.chips input:checked + label{background:var(--navy);border-color:var(--navy);color:var(--navy-ink)}
+.chips input:focus-visible + label{outline:3px solid var(--focus);outline-offset:2px}
+.switch{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:44px;cursor:pointer}
+.switch input{appearance:none;-webkit-appearance:none;width:52px;height:30px;border-radius:999px;background:var(--line);position:relative;cursor:pointer;flex:none;transition:background-color .2s ease;margin:0}
+.switch input::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#FFFFFF;box-shadow:0 1px 3px rgb(0 0 0 / .25);transition:transform .2s ease}
+.switch input:checked{background:var(--ok)}
+.switch input:checked::after{transform:translateX(22px)}
+.switch span small{display:block;font-weight:400;font-size:14px;color:var(--ink-3)}
+.switch span{font-weight:600}
+.est-out{background:var(--navy);color:var(--navy-ink);padding:clamp(20px,3vw,36px);display:grid;gap:18px;align-content:start}
+.disclaim{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.02em;padding:8px 12px;border-radius:10px;background:var(--card-accent);color:#14223D;justify-self:start}
+.est-range{font-family:var(--font-display);font-size:clamp(34px,4.4vw,48px);line-height:1.1;font-variant-numeric:tabular-nums}
+.est-per{color:var(--navy-ink-2);font-size:15px}
+.breakdown{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid rgb(255 255 255 / .16)}
+.breakdown li{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid rgb(255 255 255 / .16);font-size:15px}
+.breakdown li span:last-child{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.est-out .fine{color:var(--navy-ink-2)}
+.est-out .btn-primary{background:var(--card-accent);color:#14223D;justify-self:start}
+@media (max-width: 900px){ .est{grid-template-columns:1fr} }
+@media (max-width: 420px){ .row2{grid-template-columns:1fr} }
+
+/* =========================================================
+   10. EVERYDAY BENEFITS
+   ========================================================= */
+.everyday{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+.ev{padding:26px 22px 8px 0;display:grid;gap:10px;align-content:start;border-right:1px solid var(--line);padding-left:22px}
+.ev:first-child{padding-left:0}
+.ev:last-child{border-right:0}
+.ev .ev-num{font-family:var(--font-display);font-size:52px;line-height:1;color:var(--coral-ink);font-variant-numeric:tabular-nums}
+.ev .ev-num small{font-size:20px;margin-left:4px}
+.ev h3{font-size:20px}
+.ev p{font-size:15px;color:var(--ink-2)}
+@media (max-width: 960px){ .everyday{grid-template-columns:1fr 1fr} .ev{border-right:0;padding-left:0;border-bottom:1px solid var(--line);padding-bottom:24px} }
+@media (max-width: 520px){ .everyday{grid-template-columns:1fr} }
+
+/* =========================================================
+   11. TRUST & TRANSPARENCY
+   ========================================================= */
+.trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:clamp(20px,3vw,32px);display:grid;gap:16px;align-content:start}
+.box h3{font-size:24px}
+.excl{list-style:none;margin:0;padding:0;display:grid}
+.excl li{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--line)}
+.excl li:first-child{border-top:0;padding-top:0}
+.excl b{display:block;margin-bottom:2px}
+.excl p{font-size:15px;color:var(--ink-2)}
+.excl svg{color:var(--coral-ink);margin-top:2px}
+.data-list li svg{color:var(--ok)}
+.tpa{grid-column:1 / -1}
+.tpa-flow{display:grid;grid-template-columns:1fr 48px 1fr 48px 1fr 48px 1fr;align-items:stretch}
+.node{border:1.5px solid var(--line);border-radius:var(--radius);padding:16px;display:grid;gap:6px;align-content:start;background:var(--bg)}
+.node .k{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.node b{font-size:17px}
+.node p{font-size:14px;color:var(--ink-2)}
+.node.fam{background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}
+.node.fam .k, .node.fam p{color:var(--navy-ink-2)}
+.arrow{display:grid;place-items:center;color:var(--coral)}
+.arrow svg{width:36px;height:24px}
+.flows{margin-top:6px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:14px;color:var(--ink-2)}
+.flows div{padding:12px 14px;border-radius:12px;background:var(--surface-2)}
+.flows b{color:var(--ink)}
+@media (max-width: 900px){
+  .trust-grid{grid-template-columns:1fr}
+  .tpa-flow{grid-template-columns:1fr}
+  .arrow{height:40px}
+  .arrow svg{transform:rotate(90deg)}
+  .flows{grid-template-columns:1fr}
+}
+
+/* =========================================================
+   12. FAQ
+   ========================================================= */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,5vw,72px);align-items:start}
+.faq{display:grid;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:60px;padding:14px 0;font-weight:600;font-size:17px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .pm{flex:none;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .2s ease}
+.faq details[open] summary .pm{transform:rotate(45deg);background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}
+.faq .ans{padding:0 48px 20px 0;color:var(--ink-2);display:grid;gap:8px;max-width:65ch}
+@media (max-width: 900px){ .faq-grid{grid-template-columns:1fr} .faq .ans{padding-right:0} }
+
+/* =========================================================
+   13. FINAL CTA + FORM
+   ========================================================= */
+.final{background:var(--navy);color:var(--navy-ink)}
+.final-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:start}
+.final h2{font-size:clamp(32px,4.6vw,52px)}
+.final .lead{color:var(--navy-ink-2)}
+.final .eyebrow{color:var(--card-accent)}
+.form{background:var(--surface);color:var(--ink);border-radius:var(--radius-lg);padding:clamp(20px,3vw,32px);display:grid;gap:18px}
+.form .f{display:grid;gap:6px}
+.form label{font-weight:600;font-size:15px}
+.form .hint{font-size:13px;color:var(--ink-3);font-weight:400}
+.form input[type="text"], .form input[type="tel"], .form input[type="email"]{min-height:48px;padding:10px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);font-size:16px;width:100%}
+.form input:focus-visible{outline:3px solid var(--focus);outline-offset:1px}
+.form input[aria-invalid="true"]{border-color:var(--coral)}
+.err{font-size:14px;color:var(--coral-ink);font-weight:500;min-height:0}
+.err:empty{display:none}
+.consent{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;font-size:14px;color:var(--ink-2);cursor:pointer}
+.consent input{width:22px;height:22px;margin:2px 0 0;accent-color:var(--coral);cursor:pointer}
+.success{display:grid;gap:14px;justify-items:start}
+.success .ok-ico{width:56px;height:56px;border-radius:50%;background:var(--ok-tint);color:var(--ok);display:grid;place-items:center}
+.success h3{font-size:26px}
+@media (max-width: 900px){ .final-grid{grid-template-columns:1fr} }
+
+/* =========================================================
+   14. FOOTER
+   ========================================================= */
+.site-footer{background:var(--bg);border-top:1px solid var(--line);padding-block:48px 36px}
+.foot{display:grid;grid-template-columns:1.2fr 1fr auto;gap:28px;align-items:start}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 8px}
+.foot ul a{display:inline-flex;align-items:center;min-height:44px;padding:0 6px;font-size:15px;color:var(--ink-2)}
+.disclaimer{margin-top:28px;padding:16px 18px;border-radius:var(--radius);border:1.5px dashed var(--coral);background:var(--coral-tint);color:var(--ink);font-size:15px;font-weight:500}
+@media (max-width: 820px){ .foot{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<div id="app" data-lang="vi">
+<a class="skip" href="#main"><span data-l="vi">Bỏ qua, đến nội dung chính</span><span data-l="en">Skip to main content</span></a>
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
+<header class="site-header">
+  <nav class="wrap nav" aria-label="Chính" data-vi-aria="Chính" data-en-aria="Main">
+    <a class="brand" href="#top">
+      <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="10" fill="var(--navy)"/><path d="M8 17.5 16 10l8 7.5V24a1 1 0 0 1-1 1h-4.5v-5h-5v5H9a1 1 0 0 1-1-1v-6.5Z" fill="none" stroke="var(--navy-ink)" stroke-width="2" stroke-linejoin="round"/><circle cx="16" cy="16.5" r="2" fill="var(--card-accent)"/></svg>
+      <span>Family Reconnect</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#van-de"><span data-l="vi">Vấn đề</span><span data-l="en">The problem</span></a></li>
+      <li><a href="#bao-ve"><span data-l="vi">Lớp bảo vệ</span><span data-l="en">Protection</span></a></li>
+      <li><a href="#vi-cham-soc"><span data-l="vi">Ví Chăm sóc</span><span data-l="en">Care Wallet</span></a></li>
+      <li><a href="#dich-vu"><span data-l="vi">Dịch vụ</span><span data-l="en">Services</span></a></li>
+      <li><a href="#boi-thuong"><span data-l="vi">Bồi thường</span><span data-l="en">Claims</span></a></li>
+      <li><a href="#tinh-phi"><span data-l="vi">Tính phí</span><span data-l="en">Pricing</span></a></li>
+      <li><a href="#hoi-dap"><span data-l="vi">Hỏi đáp</span><span data-l="en">FAQ</span></a></li>
+    </ul>
+    <div class="nav-tools">
+      <div class="lang-switch" role="group" aria-label="Ngôn ngữ / Language">
+        <button type="button" data-set-lang="vi" aria-pressed="true" lang="vi">VI</button>
+        <button type="button" data-set-lang="en" aria-pressed="false" lang="en">EN</button>
+      </div>
+      <button type="button" class="icon-btn" id="themeBtn" aria-label="Đổi giao diện sáng/tối" data-vi-aria="Đổi giao diện sáng/tối" data-en-aria="Toggle light/dark theme">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      </button>
+      <button type="button" class="icon-btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Mở menu" data-vi-aria="Mở menu" data-en-aria="Open menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <a class="btn btn-primary btn-sm nav-cta" href="#tinh-phi"><span data-l="vi">Tính phí</span><span data-l="en">Get a price</span></a>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- =====================================================
+     1. HERO
+     ===================================================== -->
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="pillars" aria-label="Protect, Recover, Care, Continue"><span>Protect</span><span>Recover</span><span>Care</span><span>Continue</span></p>
+      <h1 id="hero-title">
+        <span data-l="vi">Khi bố mẹ cần nghỉ ngơi, <em>gia đình vẫn vận hành.</em></span>
+        <span data-l="en">When parents need to rest, <em>family life keeps going.</em></span>
+      </h1>
+      <p class="lead" data-l="vi">Bố hoặc mẹ phải nằm viện, viện phí đã có bảo hiểm y tế lo. Còn việc đón con, nấu cơm, dọn nhà thì sao? Family Reconnect bảo vệ tài chính dài hạn cho gia đình bạn, và cộng Giờ chăm sóc vào ví để bạn đặt người giúp ngay khi cần.</p>
+      <p class="lead" data-l="en">When a parent is in hospital, health insurance covers the bill. But who picks up the kids, cooks dinner, keeps the house running? Family Reconnect protects your family's finances for the long term, and adds Care Hours to your wallet so you can book help the moment you need it.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#tinh-phi"><span data-l="vi">Tính phí của gia đình bạn</span><span data-l="en">Price your family's plan</span></a>
+        <a class="btn btn-ghost" href="#vi-cham-soc"><span data-l="vi">Xem cách hoạt động</span><span data-l="en">See how it works</span></a>
+      </div>
+      <ul class="facts">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span data-l="vi">Bảo vệ đến <b data-b="term.sumAssured.max" data-f="money"></b> mỗi bố/mẹ</span><span data-l="en">Up to <b data-b="term.sumAssured.max" data-f="money"></b> cover per parent</span></li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span data-l="vi">Nằm viện là duyệt ngay</span><span data-l="en">Hospital stays approved instantly</span></li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span data-l="vi">Bác sĩ tư vấn <b data-b="everyday.telehealth"></b></span><span data-l="en">Doctors on call <b data-b="everyday.telehealth"></b></span></li>
+      </ul>
+    </div>
+
+    <div class="wallet-stage">
+      <article class="wallet" aria-label="Minh họa Ví Chăm sóc Gia đình" data-vi-aria="Minh họa Ví Chăm sóc Gia đình" data-en-aria="Illustration of the Family Care Wallet">
+        <div class="wallet-top">
+          <div>
+            <div class="wallet-label"><span data-l="vi">Ví Chăm sóc Gia đình</span><span data-l="en">Family Care Wallet</span></div>
+            <div class="wallet-family"><span data-l="vi">Nhà bé Na · 2 con</span><span data-l="en">Na's family · 2 kids</span></div>
+          </div>
+          <span class="wallet-status" id="heroStatus"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span data-l="vi">Đã vào ví</span><span data-l="en">Added</span></span>
+        </div>
+        <div class="wallet-amount" aria-live="off">
+          <strong id="heroHours" class="num">40</strong><span><span data-l="vi">giờ chăm sóc</span><span data-l="en">care hours</span></span>
+        </div>
+        <div class="meter" id="heroMeter" aria-hidden="true"></div>
+        <div class="wallet-event">
+          <span><span data-l="vi">Mẹ nằm viện <span data-b="pathwayA.h7.days"></span> ngày</span><span data-l="en">Mum in hospital for <span data-b="pathwayA.h7.days"></span> days</span></span>
+          <b>+<span data-b="pathwayA.h7.hours"></span> <span data-l="vi">giờ</span><span data-l="en">hrs</span></b>
+        </div>
+        <div class="wallet-services">
+          <span data-l="vi">Trông trẻ</span><span data-l="en">Childcare</span>
+          <span data-l="vi">Nấu ăn</span><span data-l="en">Meals</span>
+          <span data-l="vi">Đưa đón con</span><span data-l="en">School runs</span>
+          <span data-l="vi">Dọn nhà</span><span data-l="en">Housekeeping</span>
+        </div>
+        <p class="wallet-note"><span data-l="vi">Kịch bản minh họa. Thanh đầy = <span data-b="pathwayA.both.hours"></span> giờ, mức cao nhất.</span><span data-l="en">Illustrative scenario. Full meter = <span data-b="pathwayA.both.hours"></span> hours (the highest level).</span></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     2. THE PROBLEM
+     ===================================================== -->
+<section class="sec-alt" id="van-de" aria-labelledby="problem-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag"><span data-l="vi">Kịch bản minh họa</span><span data-l="en">Illustrative scenario</span></span>
+      <h2 id="problem-title"><span data-l="vi">Chuyện gì xảy ra khi mẹ nhập viện 3 ngày?</span><span data-l="en">What happens when Mum spends 3 days in hospital?</span></h2>
+      <p class="lead" data-l="vi">Nhà anh Minh ở Quận 7, TP.HCM: hai vợ chồng đi làm, bé Na 4 tuổi học mẫu giáo, ông bà ở quê. Một sáng thứ Hai, mọi thứ bắt đầu trượt.</p>
+      <p class="lead" data-l="en">Minh's family lives in District 7, HCMC: both parents work, Na is 4 and in kindergarten, the grandparents live back in their hometown. One Monday morning, things start to slip.</p>
+    </div>
+
+    <div class="problem-grid">
+      <div>
+        <ol class="timeline">
+          <li class="day">
+            <div class="day-badge"><span data-l="vi">Ngày 1</span><span data-l="en">Day 1</span></div>
+            <div class="day-body">
+              <h3><span data-l="vi">Nhập viện cấp cứu</span><span data-l="en">Emergency admission</span></h3>
+              <ul class="losses">
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 7v6M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg><span><span class="time">07:40</span> <span data-l="vi">Chị Lan đau bụng dữ dội, vào viện. Anh Minh xin nghỉ làm đột xuất.</span><span data-l="en">Lan has severe stomach pain and is admitted. Minh takes emergency leave from work.</span></span></li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 7v6M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg><span><span class="time">16:30</span> <span data-l="vi">Cô giáo gọi: chưa ai đón bé Na.</span><span data-l="en">The teacher calls: nobody has picked Na up.</span></span></li>
+              </ul>
+            </div>
+          </li>
+          <li class="day">
+            <div class="day-badge"><span data-l="vi">Ngày 2</span><span data-l="en">Day 2</span></div>
+            <div class="day-body">
+              <h3><span data-l="vi">Tìm người trông con</span><span data-l="en">Hunting for a babysitter</span></h3>
+              <ul class="losses">
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 7v6M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg><span data-l="vi">Gọi khắp nhóm Zalo mới tìm được người trông theo giờ. Giá gấp, không quen biết.</span><span data-l="en">After messaging every group chat, he finds an hourly sitter. Last-minute rates, a total stranger.</span></li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 7v6M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg><span data-l="vi">Bữa tối là mì gói. Anh chạy qua lại giữa viện và nhà.</span><span data-l="en">Dinner is instant noodles. Minh shuttles between the hospital and home.</span></li>
+              </ul>
+            </div>
+          </li>
+          <li class="day">
+            <div class="day-badge"><span data-l="vi">Ngày 3</span><span data-l="en">Day 3</span></div>
+            <div class="day-body">
+              <h3><span data-l="vi">Việc nhà chất đống</span><span data-l="en">The house falls behind</span></h3>
+              <ul class="losses">
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 7v6M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg><span data-l="vi">Bé Na nghỉ học vì không ai đưa đi. Anh Minh nghỉ làm ngày thứ ba.</span><span data-l="en">Na misses school because no one can take her. Minh misses a third day of work.</span></li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 7v6M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg><span data-l="vi">Quần áo, bát đĩa chưa ai lo. Chị Lan về nhà nhưng bác sĩ dặn chưa được bế con.</span><span data-l="en">Laundry and dishes pile up. Lan comes home, but her doctor says no lifting the kids yet.</span></li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+        <p class="problem-close"><span data-l="vi">Tiền viện phí thì có người lo. Còn việc giữ cho gia đình vận hành thì chưa ai bảo hiểm.</span><span data-l="en">Someone pays the hospital bill. Nobody insures the work of keeping a family running.</span></p>
+      </div>
+
+      <aside class="stat-card" aria-label="Số liệu" data-vi-aria="Số liệu" data-en-aria="Key figure">
+        <div class="big num">&gt;50%</div>
+        <p data-l="vi">hộ gia đình đô thị chỉ có hai thế hệ: bố mẹ và con. Không có ông bà ở cùng để đỡ đần khi có chuyện.</p>
+        <p data-l="en">of urban households are two-generation: parents and children only. No grandparents at home to step in when something happens.</p>
+        <p class="src"><span data-l="vi">Nguồn: Indochina Research</span><span data-l="en">Source: Indochina Research</span></p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     3. PROTECTION CONTINUUM
+     ===================================================== -->
+<section id="bao-ve" aria-labelledby="cont-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span data-l="vi">Ba lớp bảo vệ</span><span data-l="en">Three layers of protection</span></p>
+      <h2 id="cont-title"><span data-l="vi">Từ vài ngày nằm viện đến những điều không ai muốn nghĩ tới</span><span data-l="en">From a few days in hospital to the things no one wants to think about</span></h2>
+      <p class="lead" data-l="vi">Chọn một tình huống để xem lớp nào đang bảo vệ gia đình bạn.</p>
+      <p class="lead" data-l="en">Pick a situation to see which layer protects your family.</p>
+    </div>
+
+    <div class="continuum">
+      <div class="scale" role="group" aria-label="Mức độ gián đoạn" data-vi-aria="Mức độ gián đoạn" data-en-aria="Level of disruption">
+        <button type="button" class="stage" data-stage="0" aria-pressed="true" aria-controls="layers">
+          <span class="dot">1</span>
+          <span class="s-name"><span data-l="vi">Gián đoạn tạm thời</span><span data-l="en">Temporary disruption</span></span>
+          <span class="s-eg"><span data-l="vi">Nằm viện vài ngày, nghỉ ngơi ngắn</span><span data-l="en">A few days in hospital, short recovery</span></span>
+        </button>
+        <button type="button" class="stage" data-stage="1" aria-pressed="false" aria-controls="layers">
+          <span class="dot">2</span>
+          <span class="s-name"><span data-l="vi">Gián đoạn kéo dài</span><span data-l="en">Prolonged disruption</span></span>
+          <span class="s-eg"><span data-l="vi">Nằm viện lâu, ICU, hồi phục nhiều tuần</span><span data-l="en">Long stay, ICU, weeks of recovery</span></span>
+        </button>
+        <button type="button" class="stage" data-stage="2" aria-pressed="false" aria-controls="layers">
+          <span class="dot">3</span>
+          <span class="s-name"><span data-l="vi">Thương tật toàn bộ vĩnh viễn</span><span data-l="en">Total permanent disability</span></span>
+          <span class="s-eg"><span data-l="vi">Không thể quay lại làm việc</span><span data-l="en">Unable to return to work</span></span>
+        </button>
+        <button type="button" class="stage" data-stage="3" aria-pressed="false" aria-controls="layers">
+          <span class="dot">4</span>
+          <span class="s-name"><span data-l="vi">Tử vong</span><span data-l="en">Death</span></span>
+          <span class="s-eg"><span data-l="vi">Một hoặc cả hai bố mẹ</span><span data-l="en">One or both parents</span></span>
+        </button>
+      </div>
+
+      <div class="layers" id="layers" aria-live="polite">
+        <article class="layer" data-layer="life">
+          <div class="l-top"><span class="l-kicker"><span data-l="vi">Lớp 1 · Cốt lõi</span><span data-l="en">Layer 1 · Core</span></span><span class="state"></span></div>
+          <h3><span data-l="vi">Bảo hiểm Tử kỳ Gia đình</span><span data-l="en">Family Term Life</span></h3>
+          <p class="l-what" data-when="2"><span data-l="vi">Chi trả <b data-b="term.deathTpdPct"></b>% số tiền bảo hiểm (<span data-b="term.sumAssured.min" data-f="money"></span>–<span data-b="term.sumAssured.max" data-f="money"></span>/người). Miễn đóng phí các năm còn lại.</span><span data-l="en">Pays <b data-b="term.deathTpdPct"></b>% of the sum assured (<span data-b="term.sumAssured.min" data-f="money"></span>–<span data-b="term.sumAssured.max" data-f="money"></span> per parent). Remaining premiums are waived.</span></p>
+          <p class="l-what" data-when="3"><span data-l="vi">Chi trả <b data-b="term.deathTpdPct"></b>% số tiền bảo hiểm. Nếu cả bố và mẹ cùng mất: <b data-b="term.bothParents.lumpPct"></b>% trả ngay, <b data-b="term.bothParents.monthlyPct"></b>% trả hằng tháng cho sinh hoạt và học tập của con đến <span data-b="term.bothParents.untilAge"></span> tuổi.</span><span data-l="en">Pays <b data-b="term.deathTpdPct"></b>% of the sum assured. If both parents die: <b data-b="term.bothParents.lumpPct"></b>% paid at once, <b data-b="term.bothParents.monthlyPct"></b>% paid monthly for the children's living and education until age <span data-b="term.bothParents.untilAge"></span>.</span></p>
+          <p class="l-what" data-when="0,1"><span data-l="vi">Không áp dụng cho tình huống này. Hợp đồng vẫn tiếp tục bảo vệ bạn.</span><span data-l="en">Not triggered here. Your policy keeps protecting you.</span></p>
+        </article>
+        <article class="layer" data-layer="wallet">
+          <div class="l-top"><span class="l-kicker"><span data-l="vi">Lớp 2 · Quyền lợi bổ sung</span><span data-l="en">Layer 2 · Rider</span></span><span class="state"></span></div>
+          <h3><span data-l="vi">Ví Chăm sóc Gia đình</span><span data-l="en">Family Care Wallet</span></h3>
+          <p class="l-what" data-when="0"><span data-l="vi">Nằm viện từ <span data-b="pathwayA.h3.days"></span> ngày: <b data-b="pathwayA.h3.hours"></b>–<b data-b="pathwayA.h7.hours"></b> Giờ chăm sóc. Hồi phục tại nhà: từ <b data-b="pathwayB.tiers.1.hours"></b> giờ.</span><span data-l="en">Hospital stay of <span data-b="pathwayA.h3.days"></span>+ days: <b data-b="pathwayA.h3.hours"></b>–<b data-b="pathwayA.h7.hours"></b> Care Hours. Recovering at home: from <b data-b="pathwayB.tiers.1.hours"></b> hours.</span></p>
+          <p class="l-what" data-when="1"><span data-l="vi"><span data-b="pathwayA.h14.days"></span> ngày hoặc <span data-b="pathwayA.h14.icuHours"></span> giờ ICU: <b data-b="pathwayA.h14.hours"></b> giờ. Cả bố mẹ cùng nằm viện: <b data-b="pathwayA.both.hours"></b> giờ. Hồi phục tại nhà: đến <b data-b="pathwayB.tiers.4.hours"></b> giờ.</span><span data-l="en"><span data-b="pathwayA.h14.days"></span> days or <span data-b="pathwayA.h14.icuHours"></span> hours in ICU: <b data-b="pathwayA.h14.hours"></b> hours. Both parents in hospital: <b data-b="pathwayA.both.hours"></b> hours. Home recovery: up to <b data-b="pathwayB.tiers.4.hours"></b> hours.</span></p>
+          <p class="l-what" data-when="2,3"><span data-l="vi">Giờ còn lại trong ví vẫn dùng được trong thời gian điều chỉnh ban đầu.</span><span data-l="en">Any hours left in the wallet can still be used while the family adjusts.</span></p>
+        </article>
+        <article class="layer" data-layer="everyday">
+          <div class="l-top"><span class="l-kicker"><span data-l="vi">Lớp 3 · Hằng ngày</span><span data-l="en">Layer 3 · Everyday</span></span><span class="state"></span></div>
+          <h3><span data-l="vi">Quyền lợi hằng ngày</span><span data-l="en">Everyday benefits</span></h3>
+          <p class="l-what" data-when="0,1"><span data-l="vi">Bác sĩ tư vấn <span data-b="everyday.telehealth"></span>, ý kiến y khoa thứ hai, <b data-b="everyday.freeHoursPerYear"></b> giờ chăm sóc tặng mỗi năm.</span><span data-l="en">Doctors on call <span data-b="everyday.telehealth"></span>, a second medical opinion, <b data-b="everyday.freeHoursPerYear"></b> complimentary care hours a year.</span></p>
+          <p class="l-what" data-when="2,3"><span data-l="vi">Hỗ trợ tư vấn cho người thân trong quá trình giải quyết quyền lợi.</span><span data-l="en">Guidance for your loved ones while the claim is settled.</span></p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     4. HOW THE CARE WALLET WORKS
+     ===================================================== -->
+<section class="sec-alt" id="vi-cham-soc" aria-labelledby="wallet-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span data-l="vi">Ví Chăm sóc Gia đình</span><span data-l="en">Family Care Wallet</span></p>
+      <h2 id="wallet-title"><span data-l="vi">Không phải tiền mặt. Là người giúp, đúng lúc.</span><span data-l="en">Not cash. Real help, right when you need it.</span></h2>
+      <p class="lead" data-l="vi">Khi có sự kiện sức khỏe đủ điều kiện, bạn nhận Giờ chăm sóc vào ví. Mỗi giờ đổi được một giờ dịch vụ từ đối tác đã được kiểm duyệt. Giờ có hiệu lực <b data-b="wallet.validityMonths"></b> tháng.</p>
+      <p class="lead" data-l="en">When a qualifying health event happens, Care Hours land in your wallet. Each hour buys one hour of service from a vetted partner. Hours stay valid for <b data-b="wallet.validityMonths"></b> months.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Hai cách nhận Giờ chăm sóc" data-vi-aria="Hai cách nhận Giờ chăm sóc" data-en-aria="Two ways to earn Care Hours">
+      <button type="button" class="tab" role="tab" id="tab-a" aria-selected="true" aria-controls="panel-a" tabindex="0">
+        <span data-l="vi">Khi nằm viện</span><span data-l="en">In hospital</span>
+        <small><span data-l="vi">Cách A · Duyệt ngay</span><span data-l="en">Pathway A · Instant</span></small>
+      </button>
+      <button type="button" class="tab" role="tab" id="tab-b" aria-selected="false" aria-controls="panel-b" tabindex="-1">
+        <span data-l="vi">Khi hồi phục tại nhà</span><span data-l="en">Recovering at home</span>
+        <small><span data-l="vi">Cách B · Bảng hỏi 6 câu</span><span data-l="en">Pathway B · 6 questions</span></small>
+      </button>
+    </div>
+
+    <!-- Pathway A: benefit ladder -->
+    <div class="panel-grid" role="tabpanel" id="panel-a" aria-labelledby="tab-a">
+      <ol class="ladder">
+        <li class="rung">
+          <div class="r-when"><span data-l="vi">Nằm viện <span data-b="pathwayA.h3.days"></span> ngày</span><span data-l="en"><span data-b="pathwayA.h3.days"></span> days in hospital</span></div>
+          <div class="r-hours"><span data-b="pathwayA.h3.hours"></span><small><span data-l="vi">giờ</span><span data-l="en">hrs</span></small></div>
+          <div class="track"><span data-bar="pathwayA.h3.hours"></span></div>
+        </li>
+        <li class="rung">
+          <div class="r-when"><span data-l="vi">Nằm viện <span data-b="pathwayA.h7.days"></span> ngày</span><span data-l="en"><span data-b="pathwayA.h7.days"></span> days in hospital</span></div>
+          <div class="r-hours"><span data-b="pathwayA.h7.hours"></span><small><span data-l="vi">giờ</span><span data-l="en">hrs</span></small></div>
+          <div class="track"><span data-bar="pathwayA.h7.hours"></span></div>
+        </li>
+        <li class="rung">
+          <div class="r-when"><span data-l="vi">Nằm viện <span data-b="pathwayA.h14.days"></span> ngày <span class="r-sub">hoặc <span data-b="pathwayA.h14.icuHours"></span> giờ tại ICU</span></span><span data-l="en"><span data-b="pathwayA.h14.days"></span> days in hospital <span class="r-sub">or <span data-b="pathwayA.h14.icuHours"></span> hours in ICU</span></span></div>
+          <div class="r-hours"><span data-b="pathwayA.h14.hours"></span><small><span data-l="vi">giờ</span><span data-l="en">hrs</span></small></div>
+          <div class="track"><span data-bar="pathwayA.h14.hours"></span></div>
+        </li>
+        <li class="rung emergency">
+          <div class="r-when"><span data-l="vi">Cả bố và mẹ cùng nằm viện <span class="r-sub">Chế độ Khẩn cấp Gia đình</span></span><span data-l="en">Both parents in hospital at once <span class="r-sub">Family Emergency Mode</span></span></div>
+          <div class="r-hours"><span data-b="pathwayA.both.hours"></span><small><span data-l="vi">giờ</span><span data-l="en">hrs</span></small></div>
+          <div class="track"><span data-bar="pathwayA.both.hours"></span></div>
+        </li>
+        <li class="rung child">
+          <div class="r-when"><span data-l="vi">Con nằm viện <span data-b="pathwayA.child.days"></span> ngày <span class="r-sub">để bố mẹ yên tâm ở bên con</span></span><span data-l="en">Child in hospital for <span data-b="pathwayA.child.days"></span> days <span class="r-sub">so you can stay by their side</span></span></div>
+          <div class="r-hours"><span data-b="pathwayA.child.hours"></span><small><span data-l="vi">giờ</span><span data-l="en">hrs</span></small></div>
+          <div class="track"><span data-bar="pathwayA.child.hours"></span></div>
+        </li>
+      </ol>
+      <aside class="aside-card">
+        <span class="tag ok"><span data-l="vi">Không cần đánh giá</span><span data-l="en">No assessment needed</span></span>
+        <h3><span data-l="vi">Nằm viện là đủ điều kiện</span><span data-l="en">A hospital stay is enough</span></h3>
+        <ul>
+          <li data-l="vi">Chỉ cần giấy ra viện hoặc giấy xác nhận nằm viện.</li>
+          <li data-l="en">All you need is a discharge or admission certificate.</li>
+          <li data-l="vi">Mỗi đợt nằm viện tính theo mốc cao nhất đạt được, không cộng dồn các mốc.</li>
+          <li data-l="en">Each stay counts at the highest level it reaches. Levels don't stack.</li>
+          <li data-l="vi">Chế độ Khẩn cấp Gia đình áp dụng khi thời gian nằm viện của bố và mẹ trùng nhau. Người trông trẻ được ưu tiên điều phối.</li>
+          <li data-l="en">Family Emergency Mode applies when both parents' hospital stays overlap. Childcare is dispatched with priority.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <!-- Pathway B: interactive demo -->
+    <div class="panel-grid" role="tabpanel" id="panel-b" aria-labelledby="tab-b" hidden>
+      <div>
+        <p class="lead" style="margin-bottom:14px" data-l="vi">Sau mổ, gãy xương hay bệnh cần nghỉ ở nhà, bạn trả lời 6 câu: mình còn tự làm được những việc chăm con nào? Thử chọn mức độ bên dưới.</p>
+        <p class="lead" style="margin-bottom:14px" data-l="en">After surgery, a fracture or an illness that keeps you at home, you answer 6 questions: which childcare tasks can you still manage? Try it below.</p>
+        <div class="levels-key" id="levelsKey">
+          <span><b>F0</b> <span data-l="vi">Tự làm được</span><span data-l="en">Can do it</span></span>
+          <span><b>F1</b> <span data-l="vi">Làm được nhưng khó</span><span data-l="en">With difficulty</span></span>
+          <span><b>F2</b> <span data-l="vi">Cần người giúp một phần</span><span data-l="en">Need some help</span></span>
+          <span><b>F3</b> <span data-l="vi">Không tự làm được</span><span data-l="en">Can't do it</span></span>
+        </div>
+        <div class="acts" id="acts"><!-- built from BENEFITS.pathwayB.activities --></div>
+      </div>
+      <aside class="result" aria-live="polite" aria-atomic="true">
+        <div class="r-row">
+          <span class="r-label"><span data-l="vi">Điểm Suy giảm Khả năng Chăm sóc</span><span data-l="en">Caregiving Incapacity Score</span></span>
+          <span class="r-score" id="cisScore">0/18</span>
+        </div>
+        <div class="r-big" id="cisHours">0<small><span data-l="vi">giờ</span><span data-l="en">hrs</span></small></div>
+        <div>
+          <div class="tier-bar" id="tierBar"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="tier-ticks" id="tierTicks"></div>
+        </div>
+        <p id="cisMsg"></p>
+        <div>
+          <p class="r-label" style="margin-bottom:8px"><span data-l="vi">Dịch vụ được mở</span><span data-l="en">Services unlocked</span></p>
+          <ul class="unlock" id="unlockList"></ul>
+        </div>
+        <p class="fine"><span data-l="vi">Bản demo. Kết quả chính thức cần thêm giấy xác nhận của bác sĩ.</span><span data-l="en">Demo only. An official result also needs a doctor's note.</span></p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     5. SERVICES
+     ===================================================== -->
+<section id="dich-vu" aria-labelledby="svc-title" class="defer">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span data-l="vi">Dịch vụ bạn có thể đặt</span><span data-l="en">Services you can book</span></p>
+      <h2 id="svc-title"><span data-l="vi">Bốn việc thường bị bỏ dở đầu tiên</span><span data-l="en">The four things that fall apart first</span></h2>
+      <p class="lead" data-l="vi">Người làm được kiểm tra lý lịch và đào tạo. Bạn chọn khung giờ, xem ai sẽ đến, và đánh giá sau mỗi lần.</p>
+      <p class="lead" data-l="en">Every helper is background-checked and trained. You choose the time, see who's coming, and rate each visit.</p>
+    </div>
+    <div class="services">
+      <article class="svc">
+        <div class="svc-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="6.5" r="2.5"/><circle cx="16.5" cy="10" r="1.8"/><path d="M4.5 20v-3.5A4.5 4.5 0 0 1 9 12a4.5 4.5 0 0 1 4.5 4.5V20M13.8 20v-2.4a2.7 2.7 0 0 1 5.4 0V20"/></svg></div>
+        <h3><span data-l="vi">Trông trẻ</span><span data-l="en">Childcare</span></h3>
+        <ul>
+          <li data-l="vi">Trông bé tại nhà theo lịch ăn, ngủ, chơi của bé</li><li data-l="en">At-home care following your child's routine</li>
+          <li data-l="vi">Người chăm có chứng chỉ sơ cứu nhi</li><li data-l="en">Carers trained in paediatric first aid</li>
+          <li data-l="vi">Có thể giữ cùng một người suốt đợt</li><li data-l="en">Keep the same carer for the whole period</li>
+        </ul>
+        <p class="rate"><span data-l="vi">1 giờ dịch vụ = <span data-b="services.childcare.perHour"></span> Giờ chăm sóc</span><span data-l="en">1 hour of service = <span data-b="services.childcare.perHour"></span> Care Hour</span></p>
+        <p class="partner"><span data-l="vi">Đối tác: Vi Easy Care</span><span data-l="en">Partner: Vi Easy Care</span></p>
+      </article>
+      <article class="svc">
+        <div class="svc-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13h18M5 13a7 7 0 0 1 14 0M12 6V4M4 17h16l-1.5 3h-13Z"/></svg></div>
+        <h3><span data-l="vi">Nấu ăn</span><span data-l="en">Meals</span></h3>
+        <ul>
+          <li data-l="vi">Đi chợ và nấu bữa cơm gia đình</li><li data-l="en">Grocery shopping and home-cooked family meals</li>
+          <li data-l="vi">Thực đơn cho trẻ nhỏ và người đang hồi phục</li><li data-l="en">Menus for toddlers and for recovery</li>
+          <li data-l="vi">Chuẩn bị sẵn phần ăn cho ngày hôm sau</li><li data-l="en">Next-day portions prepped and stored</li>
+        </ul>
+        <p class="rate"><span data-l="vi">1 giờ dịch vụ = <span data-b="services.meals.perHour"></span> Giờ chăm sóc</span><span data-l="en">1 hour of service = <span data-b="services.meals.perHour"></span> Care Hour</span></p>
+        <p class="partner"><span data-l="vi">Đối tác: Việc Nhà VN</span><span data-l="en">Partner: Việc Nhà VN</span></p>
+      </article>
+      <article class="svc">
+        <div class="svc-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16V9l3-4h10l3 4v7M4 16h16M4 16v2M20 16v2"/><circle cx="7.5" cy="13" r=".8"/><circle cx="16.5" cy="13" r=".8"/></svg></div>
+        <h3><span data-l="vi">Đưa đón con đi học</span><span data-l="en">School runs</span></h3>
+        <ul>
+          <li data-l="vi">Đưa bé đến lớp và đón về đúng giờ</li><li data-l="en">Drop-off and pick-up, on time</li>
+          <li data-l="vi">Theo dõi hành trình trên ứng dụng</li><li data-l="en">Live trip tracking in the app</li>
+          <li data-l="vi">Giao nhận bé với cô giáo có xác nhận</li><li data-l="en">Confirmed hand-over with the teacher</li>
+        </ul>
+        <p class="rate"><span data-l="vi">1 lượt đưa hoặc đón = <span data-b="services.school.perTrip"></span> Giờ chăm sóc</span><span data-l="en">1 drop-off or pick-up = <span data-b="services.school.perTrip"></span> Care Hour</span></p>
+        <p class="partner"><span data-l="vi">Đối tác: Vi Easy Care</span><span data-l="en">Partner: Vi Easy Care</span></p>
+      </article>
+      <article class="svc">
+        <div class="svc-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg></div>
+        <h3><span data-l="vi">Dọn dẹp nhà cửa</span><span data-l="en">Housekeeping</span></h3>
+        <ul>
+          <li data-l="vi">Lau dọn, rửa bát, đổ rác</li><li data-l="en">Cleaning, dishes, taking out the rubbish</li>
+          <li data-l="vi">Giặt, phơi, gấp quần áo</li><li data-l="en">Washing, drying and folding laundry</li>
+          <li data-l="vi">Vệ sinh khu vực chơi của bé</li><li data-l="en">Tidying and cleaning the kids' play area</li>
+        </ul>
+        <p class="rate"><span data-l="vi">1 giờ dịch vụ = <span data-b="services.housekeeping.perHour"></span> Giờ chăm sóc</span><span data-l="en">1 hour of service = <span data-b="services.housekeeping.perHour"></span> Care Hour</span></p>
+        <p class="partner"><span data-l="vi">Đối tác: Việc Nhà VN</span><span data-l="en">Partner: Việc Nhà VN</span></p>
+      </article>
+    </div>
+    <div class="partners">
+      <span><span data-l="vi">Mạng lưới đối tác:</span><span data-l="en">Partner network:</span></span>
+      <b>Thanh Tâm Care</b><span class="fine"><span data-l="vi">chăm sóc y tế &amp; người cao tuổi</span><span data-l="en">medical &amp; senior care</span></span>
+      <b>Vi Easy Care</b><span class="fine"><span data-l="vi">chăm trẻ &amp; sau sinh</span><span data-l="en">childcare &amp; postpartum</span></span>
+      <b>Việc Nhà VN</b><span class="fine"><span data-l="vi">giúp việc gia đình</span><span data-l="en">domestic help</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     6. CLAIMS IN 5 STEPS
+     ===================================================== -->
+<section class="sec-alt defer" id="boi-thuong" aria-labelledby="claims-title">
+  <div class="wrap claims-grid">
+    <div>
+      <div class="sec-head" style="margin-bottom:24px">
+        <p class="eyebrow"><span data-l="vi">Bồi thường trong ứng dụng</span><span data-l="en">Claims in the app</span></p>
+        <h2 id="claims-title"><span data-l="vi">Năm bước, không cần đến văn phòng</span><span data-l="en">Five steps. No office visit.</span></h2>
+        <p class="lead" data-l="vi"><span class="tag">Kịch bản minh họa</span> Anh Minh gãy tay, bác sĩ yêu cầu nghỉ ở nhà 6 tuần. Đây là những gì anh thấy trên điện thoại.</p>
+        <p class="lead" data-l="en"><span class="tag">Illustrative scenario</span> Minh breaks his arm and is told to rest at home for 6 weeks. This is what he sees on his phone.</p>
+      </div>
+      <div class="progress" aria-hidden="true"><span id="stepProgress"></span></div>
+      <ol class="steps" id="steps">
+        <li><button type="button" class="step-btn" data-step="0"><span class="n">1</span><span><span class="t"><span data-l="vi">Báo sự kiện</span><span data-l="en">Report the event</span></span><span class="d"><span data-l="vi">Chọn ai bị ảnh hưởng và chuyện gì đã xảy ra.</span><span data-l="en">Choose who's affected and what happened.</span></span></span></button></li>
+        <li><button type="button" class="step-btn" data-step="1"><span class="n">2</span><span><span class="t"><span data-l="vi">Sàng lọc</span><span data-l="en">Screening</span></span><span class="d"><span data-l="vi">Nằm viện: duyệt ngay, không cần đánh giá. Hồi phục tại nhà: trả lời 6 câu hỏi.</span><span data-l="en">In hospital: approved instantly, no assessment. At home: answer 6 questions.</span></span></span></button></li>
+        <li><button type="button" class="step-btn" data-step="2"><span class="n">3</span><span><span class="t"><span data-l="vi">Tải chứng từ y tế</span><span data-l="en">Upload medical proof</span></span><span class="d"><span data-l="vi">Chụp giấy ra viện hoặc giấy xác nhận của bác sĩ.</span><span data-l="en">Snap your discharge paper or doctor's note.</span></span></span></button></li>
+        <li><button type="button" class="step-btn" data-step="3"><span class="n">4</span><span><span class="t"><span data-l="vi">Giờ chăm sóc vào ví</span><span data-l="en">Care Hours added</span></span><span class="d"><span data-l="vi">Mục tiêu: trong khoảng <span data-b="claims.targetMinutes"></span> phút sau khi đủ chứng từ.</span><span data-l="en">Target: within about <span data-b="claims.targetMinutes"></span> minutes of complete documents.</span></span></span></button></li>
+        <li><button type="button" class="step-btn" data-step="4"><span class="n">5</span><span><span class="t"><span data-l="vi">Đặt dịch vụ</span><span data-l="en">Book services</span></span><span class="d"><span data-l="vi">Chọn giờ, xem ai đến, theo dõi trực tiếp.</span><span data-l="en">Pick a time, see who's coming, track them live.</span></span></span></button></li>
+      </ol>
+      <div class="step-nav">
+        <button type="button" class="btn btn-ghost btn-sm" id="stepPrev"><span data-l="vi">Bước trước</span><span data-l="en">Previous</span></button>
+        <button type="button" class="btn btn-primary btn-sm" id="stepNext"><span data-l="vi">Bước tiếp</span><span data-l="en">Next step</span></button>
+      </div>
+    </div>
+
+    <div class="phone" role="img" aria-label="Mô phỏng màn hình ứng dụng" data-vi-aria="Mô phỏng màn hình ứng dụng" data-en-aria="App screen mockup">
+      <div class="screen">
+        <div class="bar"><span>9:41</span><span>5G ▮▮▮</span></div>
+        <!-- Screen 1: report -->
+        <div class="scr on" data-scr="0">
+          <div class="app-h"><span data-l="vi">Báo sự kiện</span><span data-l="en">Report an event</span></div>
+          <div class="body">
+            <div class="m-label"><span data-l="vi">Ai cần hỗ trợ?</span><span data-l="en">Who needs support?</span></div>
+            <div class="m-opt sel"><b>Minh</b><span style="margin-left:auto">✓</span></div>
+            <div class="m-opt">Lan</div>
+            <div class="m-opt"><span data-l="vi">Bé Na</span><span data-l="en">Na</span></div>
+            <div class="m-label" style="margin-top:6px"><span data-l="vi">Chuyện gì đã xảy ra?</span><span data-l="en">What happened?</span></div>
+            <div class="m-opt"><span data-l="vi">Đang nằm viện</span><span data-l="en">In hospital</span></div>
+            <div class="m-opt sel"><span data-l="vi">Hồi phục tại nhà</span><span data-l="en">Recovering at home</span><span style="margin-left:auto">✓</span></div>
+            <div class="m-btn"><span data-l="vi">Tiếp tục</span><span data-l="en">Continue</span></div>
+          </div>
+        </div>
+        <!-- Screen 2: screening -->
+        <div class="scr" data-scr="1">
+          <div class="app-h"><span data-l="vi">Sàng lọc · 6 câu</span><span data-l="en">Screening · 6 questions</span></div>
+          <div class="body">
+            <div class="m-card"><div class="m-row"><span data-l="vi">Bế con</span><span data-l="en">Lifting your child</span><b>F3</b></div></div>
+            <div class="m-card"><div class="m-row"><span data-l="vi">Nấu ăn</span><span data-l="en">Cooking</span><b>F3</b></div></div>
+            <div class="m-card"><div class="m-row"><span data-l="vi">Tắm cho con</span><span data-l="en">Bathing your child</span><b>F3</b></div></div>
+            <div class="m-card"><div class="m-row"><span data-l="vi">Đưa đón con</span><span data-l="en">School runs</span><b>F3</b></div></div>
+            <div class="m-card"><div class="m-row"><span data-l="vi">Dọn dẹp</span><span data-l="en">Cleaning</span><b>F3</b></div></div>
+            <div class="m-card"><div class="m-row"><span data-l="vi">Trông con ban đêm</span><span data-l="en">Night-time care</span><b>F2</b></div></div>
+            <div class="m-card navy"><div class="m-row"><span data-l="vi">Điểm</span><span data-l="en">Score</span><b class="num"><span id="demoScore">17</span>/18</b></div></div>
+          </div>
+        </div>
+        <!-- Screen 3: upload -->
+        <div class="scr" data-scr="2">
+          <div class="app-h"><span data-l="vi">Chứng từ y tế</span><span data-l="en">Medical proof</span></div>
+          <div class="body">
+            <div class="m-doc"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D7550" stroke-width="2" aria-hidden="true"><path d="M6 3h8l4 4v14H6Z"/><path d="m9 14 2 2 4-4"/></svg><span><b data-l="vi">Giấy xác nhận của bác sĩ</b><b data-l="en">Doctor's note</b><br><span style="color:#5B6580">IMG_0412.jpg</span></span></div>
+            <div class="m-doc"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D7550" stroke-width="2" aria-hidden="true"><path d="M6 3h8l4 4v14H6Z"/><path d="m9 14 2 2 4-4"/></svg><span><b data-l="vi">Phim X-quang</b><b data-l="en">X-ray report</b><br><span style="color:#5B6580">IMG_0413.jpg</span></span></div>
+            <div class="m-doc" style="justify-content:center;color:#5B6580">＋ <span data-l="vi">Thêm ảnh</span><span data-l="en">Add photo</span></div>
+            <p style="color:#5B6580;font-size:12px"><span data-l="vi">Chỉ bộ phận thẩm định xem chẩn đoán. Người giúp việc không thấy thông tin này.</span><span data-l="en">Only the assessment team sees your diagnosis. Helpers never do.</span></p>
+            <div class="m-btn"><span data-l="vi">Gửi hồ sơ</span><span data-l="en">Submit</span></div>
+          </div>
+        </div>
+        <!-- Screen 4: wallet credited -->
+        <div class="scr" data-scr="3">
+          <div class="app-h"><span data-l="vi">Ví Chăm sóc</span><span data-l="en">Care Wallet</span></div>
+          <div class="body">
+            <span class="m-ok">✓ <span data-l="vi">Đã duyệt</span><span data-l="en">Approved</span></span>
+            <div class="m-card navy">
+              <div class="m-label"><span data-l="vi">Số dư</span><span data-l="en">Balance</span></div>
+              <div class="m-big"><span data-b="demo.walletTotal"></span><span style="font-size:15px;font-family:var(--font-ui)"> <span data-l="vi">giờ</span><span data-l="en">hrs</span></span></div>
+              <div class="m-meter"><span style="width:100%"></span></div>
+            </div>
+            <div class="m-card"><div class="m-row"><span data-l="vi">Hồi phục tại nhà · 17/18 điểm</span><span data-l="en">Home recovery · score 17/18</span><b>+<span data-b="demo.walletTotal"></span></b></div></div>
+            <p style="color:#5B6580;font-size:12px"><span data-l="vi">Có hiệu lực <span data-b="wallet.validityMonths"></span> tháng.</span><span data-l="en">Valid for <span data-b="wallet.validityMonths"></span> months.</span></p>
+            <div class="m-btn"><span data-l="vi">Đặt dịch vụ</span><span data-l="en">Book a service</span></div>
+          </div>
+        </div>
+        <!-- Screen 5: booking + tracking -->
+        <div class="scr" data-scr="4">
+          <div class="app-h"><span data-l="vi">Lịch hôm nay</span><span data-l="en">Today</span></div>
+          <div class="body">
+            <div class="m-card navy">
+              <div class="m-row"><span class="m-label"><span data-l="vi">Còn lại</span><span data-l="en">Remaining</span></span><b class="num"><span id="demoLeft"></span>/<span data-b="demo.walletTotal"></span> <span data-l="vi">giờ</span><span data-l="en">hrs</span></b></div>
+              <div class="m-meter"><span id="demoLeftBar"></span></div>
+            </div>
+            <div class="m-card">
+              <div class="m-row"><b><span data-l="vi">Đón bé Na</span><span data-l="en">Pick up Na</span></b><span class="num">16:30</span></div>
+              <div style="color:#5B6580"><span data-l="vi">Cô Hạnh · Vi Easy Care</span><span data-l="en">Ms Hạnh · Vi Easy Care</span></div>
+            </div>
+            <div class="m-map" aria-hidden="true">
+              <svg viewBox="0 0 240 92" width="100%" height="92" preserveAspectRatio="none"><path d="M10 80 C 60 70, 70 30, 120 36 S 190 18, 230 12" fill="none" stroke="#C9BBA6" stroke-width="3" stroke-dasharray="5 5"/><path d="M10 80 C 60 70, 70 30, 120 36" fill="none" stroke="#1D7550" stroke-width="3"/><circle cx="120" cy="36" r="6" fill="#C8472F"/><circle cx="230" cy="12" r="5" fill="#1B2E52"/></svg>
+            </div>
+            <div class="m-track">
+              <div class="done"><span data-l="vi">Đã đến trường</span><span data-l="en">Arrived at school</span></div>
+              <div class="now"><b><span data-l="vi">Đang về nhà · 12 phút</span><span data-l="en">Heading home · 12 min</span></b></div>
+              <div><span data-l="vi">Bàn giao bé cho anh Minh</span><span data-l="en">Hand-over to Minh</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     7. PREMIUM ESTIMATOR
+     ===================================================== -->
+<section id="tinh-phi" aria-labelledby="est-title" class="defer">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span data-l="vi">Ước tính phí</span><span data-l="en">Premium estimator</span></p>
+      <h2 id="est-title"><span data-l="vi">Gia đình bạn cần đóng khoảng bao nhiêu?</span><span data-l="en">Roughly what would your family pay?</span></h2>
+      <p class="lead" data-l="vi">Điều chỉnh vài thông tin để xem khoảng phí minh họa theo năm.</p>
+      <p class="lead" data-l="en">Adjust a few details to see an illustrative yearly range.</p>
+    </div>
+
+    <form class="est" id="estForm" novalidate onsubmit="return false">
+      <div class="est-in">
+        <label class="switch" for="bothParents">
+          <span><span data-l="vi">Bảo vệ cả bố và mẹ</span><span data-l="en">Cover both parents</span><small><span data-l="vi">Tắt nếu chỉ một người tham gia</span><span data-l="en">Turn off to cover one parent</span></small></span>
+          <input type="checkbox" id="bothParents" checked>
+        </label>
+        <div class="row2">
+          <div class="field">
+            <label for="age1"><span data-l="vi">Tuổi bố</span><span data-l="en">Father's age</span></label>
+            <div class="stepper">
+              <button type="button" data-step-for="age1" data-delta="-1" aria-label="Giảm" data-vi-aria="Giảm tuổi bố" data-en-aria="Decrease father's age">−</button>
+              <input id="age1" type="number" inputmode="numeric" value="32" min="20" max="45">
+              <button type="button" data-step-for="age1" data-delta="1" aria-label="Tăng" data-vi-aria="Tăng tuổi bố" data-en-aria="Increase father's age">+</button>
+            </div>
+          </div>
+          <div class="field" id="age2Field">
+            <label for="age2"><span data-l="vi">Tuổi mẹ</span><span data-l="en">Mother's age</span></label>
+            <div class="stepper">
+              <button type="button" data-step-for="age2" data-delta="-1" aria-label="Giảm" data-vi-aria="Giảm tuổi mẹ" data-en-aria="Decrease mother's age">−</button>
+              <input id="age2" type="number" inputmode="numeric" value="30" min="20" max="45">
+              <button type="button" data-step-for="age2" data-delta="1" aria-label="Tăng" data-vi-aria="Tăng tuổi mẹ" data-en-aria="Increase mother's age">+</button>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <div class="range-out"><label for="sa"><span data-l="vi">Số tiền bảo hiểm mỗi người</span><span data-l="en">Sum assured per parent</span></label><output for="sa" id="saOut"></output></div>
+          <input type="range" id="sa">
+          <div class="range-ends"><span data-b="term.sumAssured.min" data-f="money"></span><span data-b="term.sumAssured.max" data-f="money"></span></div>
+        </div>
+        <div class="field">
+          <span class="flabel" id="termLbl"><span data-l="vi">Thời hạn hợp đồng</span><span data-l="en">Policy term</span></span>
+          <div class="chips" role="radiogroup" aria-labelledby="termLbl" id="termChips"></div>
+        </div>
+        <div class="field">
+          <span class="flabel" id="kidsLbl"><span data-l="vi">Số con</span><span data-l="en">Number of children</span></span>
+          <div class="chips" role="radiogroup" aria-labelledby="kidsLbl" id="kidsChips"></div>
+        </div>
+        <label class="switch" for="rider">
+          <span><span data-l="vi">Thêm Ví Chăm sóc Gia đình</span><span data-l="en">Add the Family Care Wallet</span><small><span data-l="vi">Quyền lợi bổ sung, có thể bỏ</span><span data-l="en">Optional rider</span></small></span>
+          <input type="checkbox" id="rider" checked>
+        </label>
+        <p class="err" id="ageErr" role="alert"></p>
+      </div>
+
+      <div class="est-out" aria-live="polite">
+        <span class="disclaim"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg><span data-l="vi">Minh họa — không phải báo giá chính thức</span><span data-l="en">Illustrative — not an official quote</span></span>
+        <div>
+          <div class="est-per"><span data-l="vi">Phí ước tính mỗi năm</span><span data-l="en">Estimated yearly premium</span></div>
+          <div class="est-range" id="estRange"></div>
+          <div class="est-per" id="estMonthly"></div>
+        </div>
+        <ul class="breakdown" id="estBreak"></ul>
+        <p class="fine"><span data-l="vi">Phí thực tế phụ thuộc thẩm định sức khỏe, nghề nghiệp và điều khoản chính thức.</span><span data-l="en">Actual premiums depend on underwriting, occupation and the final policy terms.</span></p>
+        <a class="btn btn-primary" href="#dang-ky"><span data-l="vi">Nhận tư vấn chi tiết</span><span data-l="en">Talk to an adviser</span></a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- =====================================================
+     8. EVERYDAY BENEFITS
+     ===================================================== -->
+<section class="sec-alt defer" id="hang-ngay" aria-labelledby="ev-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span data-l="vi">Giá trị mỗi ngày</span><span data-l="en">Everyday value</span></p>
+      <h2 id="ev-title"><span data-l="vi">Không cần chờ có chuyện mới thấy hữu ích</span><span data-l="en">Useful long before anything goes wrong</span></h2>
+    </div>
+    <div class="everyday">
+      <div class="ev">
+        <div class="ev-num"><span data-b="everyday.freeHoursPerYear"></span><small><span data-l="vi">giờ</span><span data-l="en">hrs</span></small></div>
+        <h3><span data-l="vi">Giờ chăm sóc tặng mỗi năm</span><span data-l="en">Complimentary hours each year</span></h3>
+        <p data-l="vi">Dùng cho buổi tối hẹn hò, ngày con ốm nhẹ hay khi bạn chỉ cần một buổi nghỉ. Chưa dùng hết thì cộng sang năm sau, tối đa <span data-b="everyday.carryOverMax"></span> giờ.</p>
+        <p data-l="en">For a date night, a mildly sick day, or just an afternoon off. Unused hours roll over, up to <span data-b="everyday.carryOverMax"></span> hours.</p>
+      </div>
+      <div class="ev">
+        <div class="ev-num" style="font-size:44px"><span data-b="everyday.telehealth"></span></div>
+        <h3><span data-l="vi">Bác sĩ trực tuyến</span><span data-l="en">Doctors online</span></h3>
+        <p data-l="vi">Gọi video với bác sĩ bất cứ lúc nào, kể cả lúc con sốt giữa đêm. Kèm <span data-b="everyday.secondOpinionPerYear"></span> lần xin ý kiến y khoa thứ hai mỗi năm.</p>
+        <p data-l="en">Video-call a doctor any time, even when your child spikes a fever at 2am. Includes <span data-b="everyday.secondOpinionPerYear"></span> second medical opinions a year.</p>
+      </div>
+      <div class="ev">
+        <div class="ev-num"><span data-b="everyday.noClaimBonus.pctPerYear"></span><small>%</small></div>
+        <h3><span data-l="vi">Thưởng năm không bồi thường</span><span data-l="en">No-Claim Bonus</span></h3>
+        <p data-l="vi">Mỗi năm không phát sinh yêu cầu từ Ví Chăm sóc, phí quyền lợi bổ sung năm sau giảm <span data-b="everyday.noClaimBonus.pctPerYear"></span>%, cộng dồn tối đa <span data-b="everyday.noClaimBonus.maxPct"></span>%.</p>
+        <p data-l="en">Each year without a Care Wallet claim, next year's rider premium drops <span data-b="everyday.noClaimBonus.pctPerYear"></span>%, up to <span data-b="everyday.noClaimBonus.maxPct"></span>% in total.</p>
+      </div>
+      <div class="ev">
+        <div class="ev-num"><span data-b="everyday.memberDiscountPct"></span><small>%</small></div>
+        <h3><span data-l="vi">Ưu tiên đặt lịch</span><span data-l="en">Priority booking</span></h3>
+        <p data-l="vi">Giảm <span data-b="everyday.memberDiscountPct"></span>% khi bạn tự đặt thêm dịch vụ từ mạng lưới đối tác, và được xếp lịch trước vào giờ cao điểm.</p>
+        <p data-l="en"><span data-b="everyday.memberDiscountPct"></span>% off extra services you book from our partner network, and first pick of peak-time slots.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     9. TRUST & TRANSPARENCY
+     ===================================================== -->
+<section id="minh-bach" aria-labelledby="trust-title" class="defer">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span data-l="vi">Minh bạch</span><span data-l="en">Transparency</span></p>
+      <h2 id="trust-title"><span data-l="vi">Những gì không được chi trả, nói trước cho rõ</span><span data-l="en">What isn't covered, said plainly up front</span></h2>
+    </div>
+    <div class="trust-grid">
+      <div class="box">
+        <h3><span data-l="vi">Loại trừ chính</span><span data-l="en">Main exclusions</span></h3>
+        <ul class="excl">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b><span data-l="vi">Thời gian chờ</span><span data-l="en">Waiting periods</span></b><p data-l="vi">Bệnh: Ví Chăm sóc bắt đầu áp dụng sau <span data-b="waiting.illnessDays"></span> ngày kể từ ngày hợp đồng có hiệu lực. Tai nạn: áp dụng ngay từ ngày đầu.</p><p data-l="en">Illness: the Care Wallet starts <span data-b="waiting.illnessDays"></span> days after your policy begins. Accidents: covered from day one.</p></div></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 3h6v4H9zM6 5h12v16H6z"/></svg><div><b><span data-l="vi">Bệnh có sẵn</span><span data-l="en">Pre-existing conditions</span></b><p data-l="vi">Bệnh đã biết trước khi tham gia mà không kê khai sẽ không được chi trả. Nếu đã kê khai, Ví Chăm sóc áp dụng sau <span data-b="waiting.preExistingMonths"></span> tháng.</p><p data-l="en">Conditions you knew about but didn't declare aren't covered. Declared conditions become eligible for the Care Wallet after <span data-b="waiting.preExistingMonths"></span> months.</p></div></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m6 6 12 12"/></svg><div><b><span data-l="vi">Phẫu thuật thẩm mỹ</span><span data-l="en">Cosmetic procedures</span></b><p data-l="vi">Nằm viện hoặc hồi phục vì làm đẹp không được cộng Giờ chăm sóc.</p><p data-l="en">Hospital stays or recovery for cosmetic reasons don't earn Care Hours.</p></div></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m6 6 12 12"/></svg><div><b><span data-l="vi">Sinh con không biến chứng</span><span data-l="en">Uncomplicated childbirth</span></b><p data-l="vi">Sinh thường hoặc sinh mổ theo kế hoạch không tính là sự kiện nằm viện. Biến chứng thai sản vẫn được xem xét.</p><p data-l="en">A routine vaginal or planned C-section birth isn't a qualifying stay. Pregnancy complications are still assessed.</p></div></li>
+        </ul>
+        <p class="fine"><span data-l="vi">Danh sách đầy đủ nằm trong Quy tắc và Điều khoản sản phẩm.</span><span data-l="en">The full list is in the product terms and conditions.</span></p>
+      </div>
+      <div class="box">
+        <h3><span data-l="vi">Dữ liệu của gia đình bạn</span><span data-l="en">Your family's data</span></h3>
+        <p class="fine" style="color:var(--ink-2)"><span data-l="vi">Theo Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân. Thông tin sức khỏe là dữ liệu cá nhân nhạy cảm.</span><span data-l="en">Under Decree 13/2023/ND-CP on personal data protection. Health information is sensitive personal data.</span></p>
+        <ul class="excl data-list">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><div><b><span data-l="vi">Hỏi trước, rõ ràng</span><span data-l="en">Clear consent first</span></b><p data-l="vi">Chúng tôi xin đồng ý riêng cho việc xử lý dữ liệu sức khỏe, nói rõ mục đích và thời gian lưu.</p><p data-l="en">We ask separate consent to process health data, stating the purpose and how long it's kept.</p></div></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><div><b><span data-l="vi">Chỉ chia sẻ phần cần thiết</span><span data-l="en">Share only what's needed</span></b><p data-l="vi">Người giúp việc chỉ biết địa chỉ, khung giờ và việc cần làm. Chẩn đoán chỉ bộ phận thẩm định xem.</p><p data-l="en">Helpers see only your address, time slot and tasks. Only assessors see a diagnosis.</p></div></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><div><b><span data-l="vi">Quyền của bạn</span><span data-l="en">Your rights</span></b><p data-l="vi">Xem, sửa, rút lại đồng ý hoặc yêu cầu xóa dữ liệu ngay trong ứng dụng.</p><p data-l="en">View, correct, withdraw consent or request deletion right in the app.</p></div></li>
+        </ul>
+      </div>
+
+      <div class="box tpa">
+        <h3><span data-l="vi">Ai làm gì khi bạn cần hỗ trợ</span><span data-l="en">Who does what when you need help</span></h3>
+        <div class="tpa-flow" role="list">
+          <div class="node" role="listitem"><span class="k"><span data-l="vi">Bước 1</span><span data-l="en">Step 1</span></span><b><span data-l="vi">Công ty bảo hiểm</span><span data-l="en">Insurer</span></b><p data-l="vi">Nhận phí, chịu rủi ro, cấp quyền lợi.</p><p data-l="en">Collects premiums, carries the risk, grants benefits.</p></div>
+          <div class="arrow" aria-hidden="true"><svg viewBox="0 0 36 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h30M24 4l8 8-8 8"/></svg></div>
+          <div class="node" role="listitem"><span class="k"><span data-l="vi">Bước 2</span><span data-l="en">Step 2</span></span><b>TPA</b><p data-l="vi">Đơn vị quản lý bồi thường: thẩm định, vận hành Ví, điều phối đối tác.</p><p data-l="en">Third-party administrator: assesses claims, runs the Wallet, coordinates partners.</p></div>
+          <div class="arrow" aria-hidden="true"><svg viewBox="0 0 36 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h30M24 4l8 8-8 8"/></svg></div>
+          <div class="node" role="listitem"><span class="k"><span data-l="vi">Bước 3</span><span data-l="en">Step 3</span></span><b><span data-l="vi">Nhà cung cấp dịch vụ</span><span data-l="en">Service providers</span></b><p>Thanh Tâm Care · Vi Easy Care · Việc Nhà VN</p></div>
+          <div class="arrow" aria-hidden="true"><svg viewBox="0 0 36 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h30M24 4l8 8-8 8"/></svg></div>
+          <div class="node fam" role="listitem"><span class="k"><span data-l="vi">Bước 4</span><span data-l="en">Step 4</span></span><b><span data-l="vi">Gia đình bạn</span><span data-l="en">Your family</span></b><p data-l="vi">Nhận dịch vụ tận nhà và đánh giá sau mỗi lần.</p><p data-l="en">Gets help at home and rates every visit.</p></div>
+        </div>
+        <div class="flows">
+          <div><b><span data-l="vi">Tiền:</span><span data-l="en">Money:</span></b> <span data-l="vi">bảo hiểm trả cho đối tác theo số giờ bạn thực dùng, qua TPA. Bạn không phải ứng tiền.</span><span data-l="en">the insurer pays partners for hours actually used, via the TPA. You never pay upfront.</span></div>
+          <div><b><span data-l="vi">Dữ liệu:</span><span data-l="en">Data:</span></b> <span data-l="vi">hồ sơ y tế dừng ở TPA. Đối tác chỉ nhận lệnh đặt lịch.</span><span data-l="en">medical records stop at the TPA. Partners receive only booking details.</span></div>
+          <div><b><span data-l="vi">Chất lượng:</span><span data-l="en">Quality:</span></b> <span data-l="vi">đánh giá của bạn quay về TPA để theo dõi và thay đối tác nếu cần.</span><span data-l="en">your ratings go back to the TPA, which monitors partners and replaces them if needed.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     10. FAQ
+     ===================================================== -->
+<section class="sec-alt defer" id="hoi-dap" aria-labelledby="faq-title">
+  <div class="wrap faq-grid">
+    <div class="sec-head">
+      <p class="eyebrow"><span data-l="vi">Hỏi đáp</span><span data-l="en">FAQ</span></p>
+      <h2 id="faq-title"><span data-l="vi">Những câu bố mẹ hay hỏi</span><span data-l="en">What parents usually ask</span></h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary><span data-l="vi">Có nhận tiền mặt không?</span><span data-l="en">Do I get cash?</span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans"><p data-l="vi">Với Bảo hiểm Tử kỳ (tử vong, thương tật toàn bộ vĩnh viễn): có, quyền lợi trả bằng tiền. Với Ví Chăm sóc: không. Bạn nhận Giờ chăm sóc để đặt người giúp. Như vậy gia đình có người hỗ trợ ngay, không phải tự đi tìm giữa lúc rối ren.</p><p data-l="en">For Term Life (death, total permanent disability): yes, benefits are paid in cash. For the Care Wallet: no. You receive Care Hours to book help, so support arrives right away instead of you hunting for it in the middle of a crisis.</p></div>
+      </details>
+      <details>
+        <summary><span data-l="vi">Nếu cả hai bố mẹ cùng nhập viện?</span><span data-l="en">What if both parents are in hospital?</span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans"><p data-l="vi">Chế độ Khẩn cấp Gia đình được bật: ví nhận <b data-b="pathwayA.both.hours"></b> giờ và người trông trẻ được ưu tiên điều phối, để con luôn có người lớn quen thuộc bên cạnh.</p><p data-l="en">Family Emergency Mode switches on: your wallet gets <b data-b="pathwayA.both.hours"></b> hours and childcare is dispatched first, so your children always have a familiar adult nearby.</p></div>
+      </details>
+      <details>
+        <summary><span data-l="vi">Giờ không dùng hết thì sao?</span><span data-l="en">What happens to unused hours?</span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans"><p data-l="vi">Giờ nhận từ mỗi lần bồi thường có hiệu lực <span data-b="wallet.validityMonths"></span> tháng. <span data-b="everyday.freeHoursPerYear"></span> giờ tặng hằng năm được cộng sang năm sau, tối đa <span data-b="everyday.carryOverMax"></span> giờ. Giờ không đổi được thành tiền.</p><p data-l="en">Hours from each claim stay valid for <span data-b="wallet.validityMonths"></span> months. The <span data-b="everyday.freeHoursPerYear"></span> complimentary hours roll over to the next year, up to <span data-b="everyday.carryOverMax"></span> hours. Hours can't be exchanged for cash.</p></div>
+      </details>
+      <details>
+        <summary><span data-l="vi">Con nằm viện có được hỗ trợ không?</span><span data-l="en">Is my child's hospital stay covered?</span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans"><p data-l="vi">Có. Con nằm viện từ <span data-b="pathwayA.child.days"></span> ngày, ví nhận <b data-b="pathwayA.child.hours"></b> giờ. Bạn có thể dùng để có người lo việc nhà hoặc trông bé còn lại trong lúc bạn ở viện với con.</p><p data-l="en">Yes. If your child stays in hospital for <span data-b="pathwayA.child.days"></span> days, your wallet gets <b data-b="pathwayA.child.hours"></b> hours, for help at home or care for your other kids while you're at the hospital.</p></div>
+      </details>
+      <details>
+        <summary><span data-l="vi">Tôi không nằm viện nhưng phải nghỉ ở nhà thì sao?</span><span data-l="en">I'm not in hospital but have to rest at home?</span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans"><p data-l="vi">Bạn dùng Cách B: trả lời 6 câu hỏi về các việc chăm con hằng ngày và gửi giấy xác nhận của bác sĩ. Tùy mức độ, ví nhận <span data-b="pathwayB.tiers.1.hours"></span>, <span data-b="pathwayB.tiers.2.hours"></span>, <span data-b="pathwayB.tiers.3.hours"></span> hoặc <span data-b="pathwayB.tiers.4.hours"></span> giờ.</p><p data-l="en">Use Pathway B: answer 6 questions about everyday childcare tasks and send a doctor's note. Depending on the level, your wallet gets <span data-b="pathwayB.tiers.1.hours"></span>, <span data-b="pathwayB.tiers.2.hours"></span>, <span data-b="pathwayB.tiers.3.hours"></span> or <span data-b="pathwayB.tiers.4.hours"></span> hours.</p></div>
+      </details>
+      <details>
+        <summary><span data-l="vi">Bao lâu thì giờ vào ví?</span><span data-l="en">How fast do hours arrive?</span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans"><p data-l="vi">Mục tiêu là trong khoảng <span data-b="claims.targetMinutes"></span> phút sau khi hồ sơ đầy đủ. Trường hợp nằm viện được duyệt ngay, không cần đánh giá.</p><p data-l="en">Our target is about <span data-b="claims.targetMinutes"></span> minutes once your documents are complete. Hospital stays are approved instantly with no assessment.</p></div>
+      </details>
+      <details>
+        <summary><span data-l="vi">Người đến nhà có đáng tin không?</span><span data-l="en">Can I trust the people who come to my home?</span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans"><p data-l="vi">Mọi người làm đều qua kiểm tra lý lịch và đào tạo của đối tác. Bạn xem trước hồ sơ người đến, theo dõi trực tiếp và đánh giá sau mỗi lần. TPA theo dõi đánh giá và thay đối tác nếu chất lượng không đạt.</p><p data-l="en">Every helper is background-checked and trained by the partner. You see their profile beforehand, track them live, and rate every visit. The TPA monitors ratings and replaces partners that fall short.</p></div>
+      </details>
+      <details>
+        <summary><span data-l="vi">Có thời gian chờ không?</span><span data-l="en">Is there a waiting period?</span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans"><p data-l="vi">Có. Với bệnh, Ví Chăm sóc áp dụng sau <span data-b="waiting.illnessDays"></span> ngày. Với tai nạn, áp dụng ngay. Bệnh có sẵn đã kê khai áp dụng sau <span data-b="waiting.preExistingMonths"></span> tháng.</p><p data-l="en">Yes. For illness, the Care Wallet applies after <span data-b="waiting.illnessDays"></span> days. Accidents are covered immediately. Declared pre-existing conditions apply after <span data-b="waiting.preExistingMonths"></span> months.</p></div>
+      </details>
+      <details>
+        <summary><span data-l="vi">Dữ liệu sức khỏe của gia đình tôi được bảo vệ ra sao?</span><span data-l="en">How is my family's health data protected?</span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans"><p data-l="vi">Dữ liệu được xử lý theo Nghị định 13/2023/NĐ-CP. Chẩn đoán chỉ dừng ở bộ phận thẩm định. Đối tác dịch vụ chỉ nhận thông tin đặt lịch. Bạn có thể rút lại đồng ý bất cứ lúc nào.</p><p data-l="en">Data is processed under Decree 13/2023/ND-CP. Diagnoses stay with the assessment team. Service partners only receive booking details. You can withdraw consent at any time.</p></div>
+      </details>
+      <details>
+        <summary><span data-l="vi">Family Reconnect đã được bán chưa?</span><span data-l="en">Can I buy Family Reconnect today?</span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans"><p data-l="vi">Chưa. Đây là sản phẩm ý tưởng phục vụ cuộc thi học thuật và chưa được cấp phép kinh doanh. Mọi con số trên trang là minh họa.</p><p data-l="en">Not yet. This is a concept product for an academic competition and isn't licensed for sale. All figures on this page are illustrative.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     11. FINAL CTA + LEAD FORM
+     ===================================================== -->
+<section class="final" id="dang-ky" aria-labelledby="final-title">
+  <div class="wrap final-grid">
+    <div class="sec-head" style="margin-bottom:0">
+      <p class="eyebrow">Protect · Recover · Care · Continue</p>
+      <h2 id="final-title"><span data-l="vi">Chuẩn bị từ bây giờ, để lúc cần không phải xoay xở một mình.</span><span data-l="en">Prepare now, so you never have to scramble alone.</span></h2>
+      <p class="lead" data-l="vi">Để lại thông tin, chuyên viên sẽ gọi lại tư vấn gói phù hợp với gia đình bạn.</p>
+      <p class="lead" data-l="en">Leave your details and an adviser will call to find the right plan for your family.</p>
+    </div>
+
+    <div class="form" id="leadWrap">
+      <form id="leadForm" novalidate>
+        <div style="display:grid;gap:18px">
+          <div class="f">
+            <label for="fName"><span data-l="vi">Họ và tên</span><span data-l="en">Full name</span></label>
+            <input type="text" id="fName" name="name" autocomplete="name" aria-describedby="fNameErr">
+            <p class="err" id="fNameErr"></p>
+          </div>
+          <div class="row2">
+            <div class="f">
+              <label for="fPhone"><span data-l="vi">Số điện thoại</span><span data-l="en">Phone number</span></label>
+              <input type="tel" id="fPhone" name="phone" autocomplete="tel" inputmode="tel" placeholder="09xx xxx xxx" aria-describedby="fPhoneErr">
+              <p class="err" id="fPhoneErr"></p>
+            </div>
+            <div class="f">
+              <label for="fEmail">Email</label>
+              <input type="email" id="fEmail" name="email" autocomplete="email" inputmode="email" aria-describedby="fEmailErr">
+              <p class="err" id="fEmailErr"></p>
+            </div>
+          </div>
+          <div class="f">
+            <label for="fKids"><span data-l="vi">Tuổi của các con</span><span data-l="en">Children's ages</span> <span class="hint"><span data-l="vi">(cách nhau bằng dấu phẩy, ví dụ: 2, 5)</span><span data-l="en">(comma-separated, e.g. 2, 5)</span></span></label>
+            <input type="text" id="fKids" name="kids" inputmode="numeric" aria-describedby="fKidsErr">
+            <p class="err" id="fKidsErr"></p>
+          </div>
+          <label class="consent" for="fConsent">
+            <input type="checkbox" id="fConsent" name="consent" aria-describedby="fConsentErr">
+            <span data-l="vi">Tôi đồng ý để Family Reconnect dùng thông tin trên để liên hệ tư vấn, theo Nghị định 13/2023/NĐ-CP. Tôi có thể rút lại đồng ý bất cứ lúc nào.</span>
+            <span data-l="en">I agree that Family Reconnect may use these details to contact me, under Decree 13/2023/ND-CP. I can withdraw consent at any time.</span>
+          </label>
+          <p class="err" id="fConsentErr"></p>
+          <button type="submit" class="btn btn-primary"><span data-l="vi">Gửi thông tin</span><span data-l="en">Send my details</span></button>
+          <p class="fine"><span data-l="vi">Bản demo: thông tin không được gửi đi đâu cả.</span><span data-l="en">Demo: your details are not sent anywhere.</span></p>
+        </div>
+      </form>
+      <div class="success" id="leadSuccess" hidden tabindex="-1">
+        <div class="ok-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></div>
+        <h3><span data-l="vi">Cảm ơn <span class="js-name"></span>!</span><span data-l="en">Thank you, <span class="js-name"></span>!</span></h3>
+        <p data-l="vi">Chúng tôi đã ghi nhận yêu cầu. Trong bản demo này, thông tin chỉ nằm trên trình duyệt của bạn và không được gửi đi.</p>
+        <p data-l="en">We've got your request. In this demo, your details stay in your browser and aren't sent anywhere.</p>
+        <button type="button" class="btn btn-ghost btn-sm" id="leadReset"><span data-l="vi">Điền lại</span><span data-l="en">Start over</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- =====================================================
+     12. FOOTER
+     ===================================================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div style="display:grid;gap:10px">
+        <a class="brand" href="#top">
+          <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="10" fill="var(--navy)"/><path d="M8 17.5 16 10l8 7.5V24a1 1 0 0 1-1 1h-4.5v-5h-5v5H9a1 1 0 0 1-1-1v-6.5Z" fill="none" stroke="var(--navy-ink)" stroke-width="2" stroke-linejoin="round"/><circle cx="16" cy="16.5" r="2" fill="var(--card-accent)"/></svg>
+          <span>Family Reconnect</span>
+        </a>
+        <p class="fine"><span data-l="vi">Khi bố mẹ cần nghỉ ngơi, gia đình vẫn vận hành.</span><span data-l="en">When parents need to rest, family life keeps going.</span></p>
+      </div>
+      <nav aria-label="Pháp lý" data-vi-aria="Pháp lý" data-en-aria="Legal">
+        <ul>
+          <li><a href="#minh-bach"><span data-l="vi">Quy tắc &amp; Điều khoản</span><span data-l="en">Terms &amp; conditions</span></a></li>
+          <li><a href="#minh-bach"><span data-l="vi">Chính sách dữ liệu cá nhân</span><span data-l="en">Personal data policy</span></a></li>
+          <li><a href="#minh-bach"><span data-l="vi">Loại trừ bảo hiểm</span><span data-l="en">Exclusions</span></a></li>
+          <li><a href="#hoi-dap"><span data-l="vi">Hỏi đáp</span><span data-l="en">FAQ</span></a></li>
+        </ul>
+      </nav>
+      <div class="lang-switch" role="group" aria-label="Ngôn ngữ / Language">
+        <button type="button" data-set-lang="vi" aria-pressed="true" lang="vi">Tiếng Việt</button>
+        <button type="button" data-set-lang="en" aria-pressed="false" lang="en">English</button>
+      </div>
+    </div>
+    <p class="disclaimer"><span data-l="vi">Family Reconnect là sản phẩm ý tưởng phục vụ cuộc thi học thuật, chưa được cấp phép kinh doanh.</span><span data-l="en">Family Reconnect is a concept product created for an academic competition and is not licensed for sale.</span></p>
+  </div>
+</footer>
+</div>
+
+<script>
+/* =========================================================
+   CONFIG 1 — BENEFITS
+   Single source of truth for every benefit number on the page.
+   Any element with data-b="path.to.value" is filled from here.
+   ========================================================= */
+const BENEFITS = {
+  term: {
+    years: [10, 15],
+    sumAssured: { min: 500e6, max: 2e9, step: 100e6, default: 1e9 }, // VND, per parent
+    deathTpdPct: 100,                                             // % of sum assured
+    premiumWaiverOnTpd: true,
+    bothParents: { lumpPct: 30, monthlyPct: 70, untilAge: 18 }
+  },
+  pathwayA: {                                  // hospitalisation — highest level reached, no stacking
+    h3:    { days: 3,  hours: 20 },
+    h7:    { days: 7,  hours: 40 },
+    h14:   { days: 14, icuHours: 48, hours: 60 },
+    both:  { hours: 100 },                     // both parents, overlapping stays = Family Emergency Mode
+    child: { days: 5,  hours: 15 }
+  },
+  pathwayB: {                                  // home recovery — Caregiving Incapacity Score
+    maxLevel: 3,                               // F0..F3 per activity
+    unlockLevel: 2,                            // activity at >= F2 unlocks its service
+    tiers: [                                   // total score (0..18) -> hours
+      { min: 0,  max: 3,  hours: 0  },
+      { min: 4,  max: 7,  hours: 20 },
+      { min: 8,  max: 11, hours: 40 },
+      { min: 12, max: 15, hours: 60 },
+      { min: 16, max: 18, hours: 80 }
+    ],
+    activities: [
+      { id: 'carry',  svc: 'childcare',    vi: 'Bế, bồng và chăm con nhỏ', en: 'Lifting and carrying your child',  default: 2 },
+      { id: 'meals',  svc: 'meals',        vi: 'Chuẩn bị bữa ăn cho cả nhà', en: 'Preparing family meals',        default: 1 },
+      { id: 'bath',   svc: 'childcare',    vi: 'Tắm rửa, vệ sinh cho con', en: 'Bathing and changing your child',  default: 2 },
+      { id: 'school', svc: 'school',       vi: 'Đưa đón con đi học', en: 'School drop-off and pick-up',            default: 3 },
+      { id: 'house',  svc: 'housekeeping', vi: 'Dọn dẹp, giặt giũ', en: 'Cleaning and laundry',                   default: 2 },
+      { id: 'night',  svc: 'childcare',    vi: 'Trông con ban đêm', en: 'Night-time care',                        default: 1 }
+    ]
+  },
+  wallet: { validityMonths: 12 },
+  services: {                                  // Care Hours consumed per unit of service
+    childcare:    { perHour: 1, vi: 'Trông trẻ', en: 'Childcare' },
+    meals:        { perHour: 1, vi: 'Nấu ăn', en: 'Meals' },
+    school:       { perTrip: 1, vi: 'Đưa đón con', en: 'School runs' },
+    housekeeping: { perHour: 1, vi: 'Dọn nhà', en: 'Housekeeping' }
+  },
+  everyday: {
+    freeHoursPerYear: 8,
+    carryOverMax: 16,
+    telehealth: '24/7',
+    secondOpinionPerYear: 2,
+    memberDiscountPct: 10,
+    noClaimBonus: { pctPerYear: 5, maxPct: 15 }
+  },
+  waiting: { illnessDays: 30, accidentDays: 0, preExistingMonths: 24 },
+  claims: { targetMinutes: 15 },
+  demo: { walletTotal: 80, walletUsed: 18 }    // claims-stepper story (score 17 -> top tier)
+};
+
+/* =========================================================
+   CONFIG 2 — PRICING_CONFIG  (ILLUSTRATIVE ONLY)
+   Actuarial team: replace these placeholder numbers.
+   annual premium per parent = (sumAssured / 1,000,000) x ratePerMillion(age) x termFactor
+   rider (per family)        = (riderBase + riderPerChild x children) x riderCoverFactor
+   shown range               = total x [rangeLow, rangeHigh], rounded to roundTo
+   ========================================================= */
+const PRICING_CONFIG = {
+  ageMin: 20, ageMax: 45,
+  ratePerMillion: [                 // VND per 1,000,000 VND sum assured, per year
+    { maxAge: 29, rate: 900 },
+    { maxAge: 34, rate: 1100 },
+    { maxAge: 39, rate: 1500 },
+    { maxAge: 45, rate: 2200 }
+  ],
+  termFactor: { 10: 1.00, 15: 1.15 },
+  riderBase: 1400000,               // VND / year / family
+  riderPerChild: 350000,            // VND / year / child
+  riderCoverFactor: { both: 1.0, one: 0.6 },
+  childrenOptions: [1, 2, 3, 4],
+  rangeLow: 0.90, rangeHigh: 1.15,
+  roundTo: 100000
+};
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const app = $('#app');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const getPath = (obj, path) => path.split('.').reduce((o, k) => (o == null ? o : o[k]), obj);
+const lang = () => app.dataset.lang;
+const store = {
+  get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+  set(k, v){ try { localStorage.setItem(k, v); } catch(e){} }
+};
+function fmtDec(n, digits){
+  const s = (Math.round(n * 10 ** digits) / 10 ** digits).toString();
+  return lang() === 'vi' ? s.replace('.', ',') : s;
+}
+function fmtMoney(v){
+  if (v >= 1e9) return lang() === 'vi' ? fmtDec(v / 1e9, 1) + ' tỷ' : 'VND ' + fmtDec(v / 1e9, 1) + 'bn';
+  return lang() === 'vi' ? fmtDec(v / 1e6, 0) + ' triệu' : 'VND ' + fmtDec(v / 1e6, 0) + 'm';
+}
+function fmtMillions(v){ // premiums
+  return lang() === 'vi' ? fmtDec(v / 1e6, 1) + ' triệu đ' : 'VND ' + fmtDec(v / 1e6, 1) + 'm';
+}
+const T = (vi, en) => lang() === 'vi' ? vi : en;
+
+/* Fill every [data-b] from BENEFITS, size every [data-bar] */
+function applyBindings(){
+  $$('[data-b]').forEach(el => {
+    const v = getPath(BENEFITS, el.dataset.b);
+    el.textContent = el.dataset.f === 'money' ? fmtMoney(v) : v;
+  });
+  const maxA = BENEFITS.pathwayA.both.hours;
+  $$('[data-bar]').forEach(el => { el.dataset.w = (getPath(BENEFITS, el.dataset.bar) / maxA * 100).toFixed(1) + '%'; });
+}
+
+/* =========================================================
+   LANGUAGE + THEME
+   ========================================================= */
+function setLang(l){
+  app.dataset.lang = l;
+  document.documentElement.lang = l;
+  $$('[data-set-lang]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.setLang === l)));
+  $$('[data-vi-aria]').forEach(el => el.setAttribute('aria-label', el.dataset[l + 'Aria']));
+  document.title = 'Family Reconnect';
+  store.set('fr-lang', l);
+  applyBindings();
+  renderPathwayB(); renderContinuum(); renderEstimate(); renderClaimsDemo(); buildTermKids(true);
+}
+$$('[data-set-lang]').forEach(b => b.addEventListener('click', () => setLang(b.dataset.setLang)));
+
+$('#themeBtn').addEventListener('click', () => {
+  const root = document.documentElement;
+  const cur = root.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  root.dataset.theme = cur === 'dark' ? 'light' : 'dark';
+  store.set('fr-theme', root.dataset.theme);
+});
+(() => { const t = store.get('fr-theme'); if (t) document.documentElement.dataset.theme = t; })();
+
+/* Mobile menu */
+const menuBtn = $('#menuBtn'), navLinks = $('#navLinks');
+menuBtn.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', String(open));
+});
+navLinks.addEventListener('click', e => { if (e.target.closest('a')) { navLinks.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && navLinks.classList.contains('open')) { navLinks.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.focus(); } });
+
+/* =========================================================
+   1. HERO — wallet fills with hours
+   ========================================================= */
+function initHero(){
+  const meter = $('#heroMeter');
+  meter.innerHTML = '<i></i>'.repeat(20);
+  const target = BENEFITS.pathwayA.h7.hours, max = BENEFITS.pathwayA.both.hours;
+  const segs = $$('i', meter), out = $('#heroHours');
+  const paint = h => { out.textContent = Math.round(h); const on = Math.round(h / max * 20); segs.forEach((s, i) => s.classList.toggle('on', i < on)); };
+  if (reduceMotion) { paint(target); return; }
+  paint(0);
+  const t0 = performance.now(), dur = 1600;
+  const tick = now => { const p = Math.min(1, (now - t0) / dur); paint(target * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(tick); };
+  setTimeout(() => requestAnimationFrame(tick), 350);
+}
+
+/* =========================================================
+   3. PROTECTION CONTINUUM
+   ========================================================= */
+const STAGE_LAYERS = { 0: ['wallet', 'everyday'], 1: ['wallet', 'everyday'], 2: ['life'], 3: ['life'] };
+let stage = 0;
+function renderContinuum(){
+  $$('.stage').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.stage === stage)));
+  $$('.layer').forEach(l => {
+    const on = STAGE_LAYERS[stage].includes(l.dataset.layer);
+    l.classList.toggle('active', on);
+    $('.state', l).textContent = on ? T('Đang bảo vệ', 'Protecting') : T('Chưa áp dụng', 'Not triggered');
+    $$('[data-when]', l).forEach(p => { p.hidden = !p.dataset.when.split(',').map(Number).includes(stage); });
+  });
+}
+$$('.stage').forEach(b => b.addEventListener('click', () => { stage = +b.dataset.stage; renderContinuum(); }));
+
+/* =========================================================
+   4. CARE WALLET — tabs (arrow-key support)
+   ========================================================= */
+const tabs = $$('[role="tab"]');
+function selectTab(tab){
+  tabs.forEach(t => {
+    const sel = t === tab;
+    t.setAttribute('aria-selected', String(sel)); t.tabIndex = sel ? 0 : -1;
+    $('#' + t.getAttribute('aria-controls')).hidden = !sel;
+  });
+  if (tab.id === 'tab-a') growBars();
+}
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => selectTab(t));
+  t.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length];
+    n.focus(); selectTab(n);
+  });
+});
+function growBars(){ $$('[data-bar]').forEach(el => { el.style.width = el.dataset.w; }); }
+
+/* Pathway B demo */
+const cis = BENEFITS.pathwayB;
+const maxScore = cis.activities.length * cis.maxLevel;
+function buildActs(){
+  $('#acts').innerHTML = cis.activities.map((a, i) => `
+    <fieldset class="act">
+      <legend><span data-l="vi">${a.vi}</span><span data-l="en">${a.en}</span></legend>
+      <div class="seg">
+        ${[0,1,2,3].map(lv => `<input type="radio" name="act-${a.id}" id="act-${a.id}-${lv}" value="${lv}" ${lv === a.default ? 'checked' : ''}><label for="act-${a.id}-${lv}">F${lv}</label>`).join('')}
+      </div>
+    </fieldset>`).join('');
+  $('#acts').addEventListener('change', renderPathwayB);
+  $('#tierTicks').innerHTML = cis.tiers.map(t => `<span>${t.min}–${t.max}</span>`).join('');
+}
+function renderPathwayB(){
+  const levels = cis.activities.map(a => +($(`input[name="act-${a.id}"]:checked`) || { value: 0 }).value);
+  const score = levels.reduce((s, v) => s + v, 0);
+  const tierIdx = cis.tiers.findIndex(t => score >= t.min && score <= t.max);
+  const hours = cis.tiers[tierIdx].hours;
+  $('#cisScore').textContent = score + '/' + maxScore;
+  $('#cisHours').firstChild.nodeValue = hours;
+  $$('#tierBar i').forEach((b, i) => b.classList.toggle('on', i <= tierIdx && tierIdx > 0));
+  $('#cisMsg').textContent = hours === 0
+    ? T('Bạn vẫn tự lo được phần lớn việc chăm con. Chưa đủ điều kiện nhận giờ, nhưng vẫn dùng được bác sĩ trực tuyến và giờ tặng hằng năm.',
+        'You can still handle most childcare. Not eligible for hours yet, but telehealth and your complimentary hours are there.')
+    : T(`Ví của bạn sẽ nhận ${hours} Giờ chăm sóc, dùng trong ${BENEFITS.wallet.validityMonths} tháng.`,
+        `Your wallet would receive ${hours} Care Hours, valid for ${BENEFITS.wallet.validityMonths} months.`);
+  const unlocked = new Set(cis.activities.filter((a, i) => levels[i] >= cis.unlockLevel).map(a => a.svc));
+  $('#unlockList').innerHTML = Object.entries(BENEFITS.services).map(([k, s]) => {
+    const on = hours > 0 && unlocked.has(k);
+    return `<li class="${on ? 'on' : ''}"><span class="chk" aria-hidden="true">${on ? '✓' : ''}</span>${s[lang()]}<span class="visually-hidden">${on ? T(': đã mở', ': unlocked') : T(': chưa mở', ': locked')}</span></li>`;
+  }).join('');
+}
+
+/* =========================================================
+   6. CLAIMS STEPPER
+   ========================================================= */
+let step = 0;
+const stepBtns = $$('.step-btn');
+function renderStep(){
+  stepBtns.forEach((b, i) => {
+    b.classList.toggle('done', i < step);
+    if (i === step) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current');
+  });
+  $$('.scr').forEach((s, i) => s.classList.toggle('on', i === step));
+  $('#stepProgress').style.width = ((step + 1) / stepBtns.length * 100) + '%';
+  $('#stepPrev').disabled = step === 0;
+  $('#stepNext').disabled = step === stepBtns.length - 1;
+}
+stepBtns.forEach((b, i) => b.addEventListener('click', () => { step = i; renderStep(); }));
+$('#stepPrev').addEventListener('click', () => { step = Math.max(0, step - 1); renderStep(); });
+$('#stepNext').addEventListener('click', () => { step = Math.min(stepBtns.length - 1, step + 1); renderStep(); });
+function renderClaimsDemo(){
+  const { walletTotal, walletUsed } = BENEFITS.demo;
+  $('#demoLeft').textContent = walletTotal - walletUsed;
+  $('#demoLeftBar').style.width = ((walletTotal - walletUsed) / walletTotal * 100) + '%';
+}
+
+/* =========================================================
+   7. PREMIUM ESTIMATOR
+   ========================================================= */
+const est = { term: BENEFITS.term.years[BENEFITS.term.years.length - 1], kids: 2 };
+function buildTermKids(relabel){
+  const termHTML = BENEFITS.term.years.map(y => `<input type="radio" name="term" id="term-${y}" value="${y}" ${y === est.term ? 'checked' : ''}><label for="term-${y}">${y} ${T('năm', 'years')}</label>`).join('');
+  const kidsHTML = PRICING_CONFIG.childrenOptions.map(k => `<input type="radio" name="kids" id="kids-${k}" value="${k}" ${k === est.kids ? 'checked' : ''}><label for="kids-${k}">${k}</label>`).join('');
+  $('#termChips').innerHTML = termHTML;
+  $('#kidsChips').innerHTML = kidsHTML;
+}
+function rateFor(age){
+  return (PRICING_CONFIG.ratePerMillion.find(r => age <= r.maxAge) || PRICING_CONFIG.ratePerMillion.at(-1)).rate;
+}
+function clampAge(input){
+  let v = parseInt(input.value, 10);
+  if (isNaN(v)) return null;
+  return Math.min(PRICING_CONFIG.ageMax, Math.max(PRICING_CONFIG.ageMin, v));
+}
+function renderEstimate(){
+  const P = PRICING_CONFIG;
+  const both = $('#bothParents').checked;
+  const rider = $('#rider').checked;
+  const sa = +$('#sa').value;
+  $('#saOut').textContent = fmtMoney(sa);
+  $('#age2Field').hidden = !both;
+
+  const a1 = clampAge($('#age1')), a2 = clampAge($('#age2'));
+  const raw1 = parseInt($('#age1').value, 10), raw2 = parseInt($('#age2').value, 10);
+  const outOfRange = [raw1, both ? raw2 : P.ageMin].some(v => isNaN(v) || v < P.ageMin || v > P.ageMax);
+  $('#ageErr').textContent = outOfRange ? T(`Minh họa áp dụng cho tuổi từ ${P.ageMin} đến ${P.ageMax}. Đang tính với tuổi gần nhất trong khoảng này.`, `The illustration covers ages ${P.ageMin}–${P.ageMax}. Using the nearest age in that range.`) : '';
+
+  const tf = P.termFactor[est.term];
+  const p1 = sa / 1e6 * rateFor(a1 ?? P.ageMin) * tf;
+  const p2 = both ? sa / 1e6 * rateFor(a2 ?? P.ageMin) * tf : 0;
+  const pr = rider ? (P.riderBase + P.riderPerChild * est.kids) * P.riderCoverFactor[both ? 'both' : 'one'] : 0;
+  const total = p1 + p2 + pr;
+  const round = v => Math.round(v / P.roundTo) * P.roundTo;
+  const lo = round(total * P.rangeLow), hi = round(total * P.rangeHigh);
+
+  $('#estRange').textContent = `${fmtMillions(lo)} – ${fmtMillions(hi)}`;
+  $('#estMonthly').textContent = T(`Khoảng ${fmtMillions(round(total / 12))} mỗi tháng`, `About ${fmtMillions(round(total / 12))} a month`);
+  const rows = [
+    [T('Tử kỳ · Bố', 'Term life · Father'), p1],
+    ...(both ? [[T('Tử kỳ · Mẹ', 'Term life · Mother'), p2]] : []),
+    [T(`Ví Chăm sóc · ${est.kids} con`, `Care Wallet · ${est.kids} ${est.kids > 1 ? 'children' : 'child'}`), pr]
+  ];
+  $('#estBreak').innerHTML = rows.map(([k, v]) => `<li><span>${k}</span><span>${v ? '≈ ' + fmtMillions(round(v)) : T('Không chọn', 'Not added')}</span></li>`).join('');
+}
+function initEstimator(){
+  const s = BENEFITS.term.sumAssured, r = $('#sa');
+  r.min = s.min; r.max = s.max; r.step = s.step; r.value = s.default;
+  $$('#age1, #age2').forEach(i => { i.min = PRICING_CONFIG.ageMin; i.max = PRICING_CONFIG.ageMax; });
+  buildTermKids();
+  const f = $('#estForm');
+  f.addEventListener('input', renderEstimate);
+  f.addEventListener('change', e => {
+    if (e.target.name === 'term') est.term = +e.target.value;
+    if (e.target.name === 'kids') est.kids = +e.target.value;
+    if (e.target.type === 'number') { const v = clampAge(e.target); if (v != null) e.target.value = v; }
+    renderEstimate();
+  });
+  $$('[data-step-for]').forEach(b => b.addEventListener('click', () => {
+    const i = $('#' + b.dataset.stepFor);
+    i.value = Math.min(PRICING_CONFIG.ageMax, Math.max(PRICING_CONFIG.ageMin, (parseInt(i.value, 10) || 30) + +b.dataset.delta));
+    renderEstimate();
+  }));
+}
+
+/* =========================================================
+   11. LEAD FORM — front-end validation only, sends nothing
+   ========================================================= */
+function initForm(){
+  const form = $('#leadForm');
+  const checks = {
+    fName:    v => v.trim().length >= 2 || T('Vui lòng nhập họ tên (ít nhất 2 ký tự).', 'Please enter your name (at least 2 characters).'),
+    fPhone:   v => /^(0|\+84)(3|5|7|8|9)\d{8}$/.test(v.replace(/[\s.\-]/g, '')) || T('Số điện thoại chưa đúng. Ví dụ: 0912 345 678.', 'That phone number looks wrong. Example: 0912 345 678.'),
+    fEmail:   v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) || T('Email chưa đúng định dạng, ví dụ: ten@email.com.', 'Please enter a valid email, e.g. name@email.com.'),
+    fKids:    v => { const a = v.split(',').map(s => s.trim()).filter(Boolean); return (a.length > 0 && a.every(x => /^\d{1,2}$/.test(x) && +x <= 17)) || T('Nhập tuổi của con từ 0 đến 17, cách nhau bằng dấu phẩy.', 'Enter ages from 0 to 17, separated by commas.'); },
+    fConsent: (v, el) => el.checked || T('Bạn cần đồng ý để chúng tôi liên hệ.', 'Please agree so we can contact you.')
+  };
+  const validate = id => {
+    const el = $('#' + id), res = checks[id](el.value, el), err = $('#' + id + 'Err');
+    const ok = res === true;
+    el.setAttribute('aria-invalid', String(!ok));
+    err.textContent = ok ? '' : res;
+    return ok;
+  };
+  Object.keys(checks).forEach(id => $('#' + id).addEventListener('blur', () => { if ($('#' + id).getAttribute('aria-invalid')) validate(id); }));
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const bad = Object.keys(checks).filter(id => !validate(id));
+    if (bad.length) { $('#' + bad[0]).focus(); return; }
+    $$('.js-name').forEach(n => n.textContent = $('#fName').value.trim().split(/\s+/).pop());
+    form.hidden = true;
+    const s = $('#leadSuccess'); s.hidden = false; s.focus();
+  });
+  $('#leadReset').addEventListener('click', () => {
+    form.reset();
+    $$('[aria-invalid]', form).forEach(el => el.removeAttribute('aria-invalid'));
+    $$('.err', form).forEach(el => el.textContent = '');
+    $('#leadSuccess').hidden = true; form.hidden = false; $('#fName').focus();
+  });
+}
+
+/* =========================================================
+   SCROLL REVEALS — only elements below the fold start hidden
+   ========================================================= */
+function initReveals(){
+  if (reduceMotion || !('IntersectionObserver' in window)) return;
+  const els = $$('.sec-head, .timeline, .continuum, .ladder, .services, .claims-grid .phone, .est, .everyday, .trust-grid, .faq, .form');
+  const io = new IntersectionObserver(entries => entries.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add('reveal-in'); en.target.classList.remove('reveal-pre'); io.unobserve(en.target); }
+  }), { rootMargin: '0px 0px -8% 0px' });
+  els.forEach(el => { if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add('reveal-pre'); io.observe(el); } });
+  // bars in Pathway A grow when the ladder scrolls into view
+  const lad = new IntersectionObserver(e => { if (e[0].isIntersecting) { growBars(); lad.disconnect(); } });
+  lad.observe($('.ladder'));
+}
+
+/* =========================================================
+   INIT
+   ========================================================= */
+buildActs();
+initEstimator();
+initForm();
+setLang(store.get('fr-lang') === 'en' ? 'en' : 'vi');
+initHero();
+renderStep();
+initReveals();
+if (reduceMotion || !('IntersectionObserver' in window)) growBars();
+</script>
+</body>
+</html>
