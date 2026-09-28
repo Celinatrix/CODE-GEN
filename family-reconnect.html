@@ -169,7 +169,7 @@ section{padding-block:clamp(64px, 9vw, 120px);scroll-margin-top:72px}
 /* =========================================================
    4. PROBLEM — 3-day timeline
    ========================================================= */
-.problem-grid{display:grid;grid-template-columns:1fr 320px;gap:clamp(24px,4vw,56px);align-items:start}
+.problem-grid{display:grid;gap:clamp(24px,4vw,56px);align-items:start}
 .timeline{list-style:none;margin:0;padding:0;display:grid;gap:0;position:relative}
 .day{display:grid;grid-template-columns:88px 1fr;gap:20px;padding-bottom:28px;position:relative}
 .day::before{content:"";position:absolute;left:43px;top:44px;bottom:0;width:2px;background:var(--line)}
@@ -181,12 +181,7 @@ section{padding-block:clamp(64px, 9vw, 120px);scroll-margin-top:72px}
 .losses li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:15px;color:var(--ink-2)}
 .losses li svg{color:var(--coral);margin-top:3px}
 .time{font-variant-numeric:tabular-nums;font-weight:600;color:var(--ink)}
-.stat-card{position:sticky;top:96px;background:var(--navy);color:var(--navy-ink);border-radius:var(--radius-lg);padding:28px;display:grid;gap:12px}
-.stat-card .big{font-family:var(--font-display);font-size:72px;line-height:1;color:var(--card-accent)}
-.stat-card p{color:var(--navy-ink-2)}
-.stat-card .src{font-size:13px;color:var(--navy-ink-2);border-top:1px solid rgb(255 255 255 / .16);padding-top:12px}
 .problem-close{margin-top:12px;font-family:var(--font-display);font-size:clamp(22px,2.6vw,30px);max-width:30ch;line-height:1.3}
-@media (max-width: 900px){ .problem-grid{grid-template-columns:1fr} .stat-card{position:static} }
 @media (max-width: 480px){ .day{grid-template-columns:1fr;gap:10px} .day::before{display:none} .day-badge{width:auto;justify-self:start;padding:0 16px} }
 
 /* =========================================================
@@ -610,13 +605,6 @@ input[type="range"]{width:100%;height:44px;accent-color:var(--coral);cursor:poin
         </ol>
         <p class="problem-close"><span data-l="vi">Tiền viện phí thì có người lo. Còn việc giữ cho gia đình vận hành thì chưa ai bảo hiểm.</span><span data-l="en">Someone pays the hospital bill. Nobody insures the work of keeping a family running.</span></p>
       </div>
-
-      <aside class="stat-card" aria-label="Số liệu" data-vi-aria="Số liệu" data-en-aria="Key figure">
-        <div class="big num">&gt;50%</div>
-        <p data-l="vi">hộ gia đình đô thị chỉ có hai thế hệ: bố mẹ và con. Không có ông bà ở cùng để đỡ đần khi có chuyện.</p>
-        <p data-l="en">of urban households are two-generation: parents and children only. No grandparents at home to step in when something happens.</p>
-        <p class="src"><span data-l="vi">Nguồn: Indochina Research</span><span data-l="en">Source: Indochina Research</span></p>
-      </aside>
     </div>
   </div>
 </section>
