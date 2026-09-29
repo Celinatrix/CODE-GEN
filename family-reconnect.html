@@ -307,11 +307,6 @@ section{padding-block:clamp(64px, 9vw, 120px);scroll-margin-top:72px}
 .stepper input::-webkit-inner-spin-button{-webkit-appearance:none}
 .range-out{display:flex;justify-content:space-between;align-items:baseline}
 .range-out output{font-family:var(--font-display);font-size:26px;font-variant-numeric:tabular-nums}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chips input{position:absolute;opacity:0;pointer-events:none}
-.chips label{min-height:44px;min-width:56px;padding:0 16px;display:grid;place-items:center;border-radius:12px;border:1px solid var(--line);background:var(--bg);font-weight:600;cursor:pointer}
-.chips input:checked + label{background:var(--navy);border-color:var(--navy);color:var(--navy-ink)}
-.chips input:focus-visible + label{outline:3px solid var(--focus);outline-offset:2px}
 .switch{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:44px;cursor:pointer}
 .switch input{appearance:none;-webkit-appearance:none;width:52px;height:30px;border-radius:999px;background:var(--line);position:relative;cursor:pointer;flex:none;transition:background-color .2s ease;margin:0}
 .switch input::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#FFFFFF;box-shadow:0 1px 3px rgb(0 0 0 / .25);transition:transform .2s ease}
@@ -919,14 +914,6 @@ section{padding-block:clamp(64px, 9vw, 120px);scroll-margin-top:72px}
           <div class="range-out"><span class="flabel"><span data-l="vi">Số tiền bảo hiểm mỗi người</span><span data-l="en">Sum assured per parent</span></span><output id="saOut"></output></div>
           <p class="fine"><span data-l="vi">Cố định cho mọi gia đình tham gia gói này.</span><span data-l="en">Fixed for every family in this plan.</span></p>
         </div>
-        <div class="field">
-          <span class="flabel" id="termLbl"><span data-l="vi">Thời hạn hợp đồng</span><span data-l="en">Policy term</span></span>
-          <div class="chips" role="radiogroup" aria-labelledby="termLbl" id="termChips"></div>
-        </div>
-        <div class="field">
-          <span class="flabel" id="kidsLbl"><span data-l="vi">Số con</span><span data-l="en">Number of children</span></span>
-          <div class="chips" role="radiogroup" aria-labelledby="kidsLbl" id="kidsChips"></div>
-        </div>
         <label class="switch" for="rider">
           <span><span data-l="vi">Thêm Ví Chăm sóc Gia đình</span><span data-l="en">Add the Family Care Wallet</span><small><span data-l="vi">Quyền lợi bổ sung, có thể bỏ</span><span data-l="en">Optional rider</span></small></span>
           <input type="checkbox" id="rider" checked>
@@ -1186,8 +1173,7 @@ section{padding-block:clamp(64px, 9vw, 120px);scroll-margin-top:72px}
    ========================================================= */
 const BENEFITS = {
   term: {
-    years: [10, 15],
-    sumAssured: { fixed: 5e9 }, // VND, per parent — fixed for every family in this plan
+    sumAssured: { fixed: 3.5e9 }, // VND, per parent — fixed for every family in this plan
     deathTpdPct: 100,                                             // % of sum assured
     premiumWaiverOnTpd: true,
     bothParents: { lumpPct: 30, monthlyPct: 70, untilAge: 18 }
@@ -1238,7 +1224,6 @@ const PRICING_CONFIG = {
   riderBase: 1400000,               // VND / year / family
   riderPerChild: 350000,            // VND / year / child
   riderCoverFactor: { both: 1.0, one: 0.6 },
-  childrenOptions: [1, 2, 3, 4],
   rangeLow: 0.90, rangeHigh: 1.15,
   roundTo: 100000
 };
@@ -1290,7 +1275,7 @@ function setLang(l){
   document.title = 'Family Reconnect';
   store.set('fr-lang', l);
   applyBindings();
-  renderContinuum(); renderEstimate(); renderClaimsDemo(); buildTermKids(true);
+  renderContinuum(); renderEstimate(); renderClaimsDemo();
 }
 $$('[data-set-lang]').forEach(b => b.addEventListener('click', () => setLang(b.dataset.setLang)));
 
@@ -1375,13 +1360,7 @@ function renderClaimsDemo(){
 /* =========================================================
    7. PREMIUM ESTIMATOR
    ========================================================= */
-const est = { term: BENEFITS.term.years[BENEFITS.term.years.length - 1], kids: 2 };
-function buildTermKids(relabel){
-  const termHTML = BENEFITS.term.years.map(y => `<input type="radio" name="term" id="term-${y}" value="${y}" ${y === est.term ? 'checked' : ''}><label for="term-${y}">${y} ${T('năm', 'years')}</label>`).join('');
-  const kidsHTML = PRICING_CONFIG.childrenOptions.map(k => `<input type="radio" name="kids" id="kids-${k}" value="${k}" ${k === est.kids ? 'checked' : ''}><label for="kids-${k}">${k}</label>`).join('');
-  $('#termChips').innerHTML = termHTML;
-  $('#kidsChips').innerHTML = kidsHTML;
-}
+const est = { term: 15, kids: 2 }; // fixed: policy term and number of children are no longer user-adjustable
 function rateFor(age){
   return (PRICING_CONFIG.ratePerMillion.find(r => age <= r.maxAge) || PRICING_CONFIG.ratePerMillion.at(-1)).rate;
 }
@@ -1422,12 +1401,9 @@ function renderEstimate(){
 }
 function initEstimator(){
   $$('#age1, #age2').forEach(i => { i.min = PRICING_CONFIG.ageMin; i.max = PRICING_CONFIG.ageMax; });
-  buildTermKids();
   const f = $('#estForm');
   f.addEventListener('input', renderEstimate);
   f.addEventListener('change', e => {
-    if (e.target.name === 'term') est.term = +e.target.value;
-    if (e.target.name === 'kids') est.kids = +e.target.value;
     if (e.target.type === 'number') { const v = clampAge(e.target); if (v != null) e.target.value = v; }
     renderEstimate();
   });
