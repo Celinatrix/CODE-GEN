@@ -845,7 +845,7 @@ input[type="range"]{width:100%;height:44px;accent-color:var(--coral);cursor:poin
     <div>
       <div class="sec-head" style="margin-bottom:24px">
         <p class="eyebrow"><span data-l="vi">Bồi thường trong ứng dụng</span><span data-l="en">Claims in the app</span></p>
-        <h2 id="claims-title"><span data-l="vi">Năm bước, không cần đến văn phòng</span><span data-l="en">Five steps. No office visit.</span></h2>
+        <h2 id="claims-title"><span data-l="vi">Sáu bước, không cần đến văn phòng</span><span data-l="en">Six steps. No office visit.</span></h2>
         <p class="lead" data-l="vi"><span class="tag">Kịch bản minh họa</span> Anh Minh gãy tay, bác sĩ yêu cầu nghỉ ở nhà 6 tuần. Đây là những gì anh thấy trên điện thoại.</p>
         <p class="lead" data-l="en"><span class="tag">Illustrative scenario</span> Minh breaks his arm and is told to rest at home for 6 weeks. This is what he sees on his phone.</p>
       </div>
@@ -854,8 +854,9 @@ input[type="range"]{width:100%;height:44px;accent-color:var(--coral);cursor:poin
         <li><button type="button" class="step-btn" data-step="0"><span class="n">1</span><span><span class="t"><span data-l="vi">Báo sự kiện</span><span data-l="en">Report the event</span></span><span class="d"><span data-l="vi">Chọn ai bị ảnh hưởng và chuyện gì đã xảy ra.</span><span data-l="en">Choose who's affected and what happened.</span></span></span></button></li>
         <li><button type="button" class="step-btn" data-step="1"><span class="n">2</span><span><span class="t"><span data-l="vi">Sàng lọc</span><span data-l="en">Screening</span></span><span class="d"><span data-l="vi">Nằm viện: duyệt ngay, không cần đánh giá. Hồi phục tại nhà: trả lời 6 câu hỏi.</span><span data-l="en">In hospital: approved instantly, no assessment. At home: answer 6 questions.</span></span></span></button></li>
         <li><button type="button" class="step-btn" data-step="2"><span class="n">3</span><span><span class="t"><span data-l="vi">Tải chứng từ y tế</span><span data-l="en">Upload medical proof</span></span><span class="d"><span data-l="vi">Chụp giấy ra viện hoặc giấy xác nhận của bác sĩ.</span><span data-l="en">Snap your discharge paper or doctor's note.</span></span></span></button></li>
-        <li><button type="button" class="step-btn" data-step="3"><span class="n">4</span><span><span class="t"><span data-l="vi">Giờ chăm sóc vào ví</span><span data-l="en">Care Hours added</span></span><span class="d"><span data-l="vi">Mục tiêu: trong khoảng <span data-b="claims.targetMinutes"></span> phút sau khi đủ chứng từ.</span><span data-l="en">Target: within about <span data-b="claims.targetMinutes"></span> minutes of complete documents.</span></span></span></button></li>
-        <li><button type="button" class="step-btn" data-step="4"><span class="n">5</span><span><span class="t"><span data-l="vi">Đặt dịch vụ</span><span data-l="en">Book services</span></span><span class="d"><span data-l="vi">Chọn giờ, xem ai đến, theo dõi trực tiếp.</span><span data-l="en">Pick a time, see who's coming, track them live.</span></span></span></button></li>
+        <li><button type="button" class="step-btn" data-step="3"><span class="n">4</span><span><span class="t"><span data-l="vi">Đang thẩm định hồ sơ</span><span data-l="en">Claim under review</span></span><span class="d"><span data-l="vi">TPA đối chiếu chứng từ với điều kiện gói bảo hiểm.</span><span data-l="en">The TPA checks your documents against the policy conditions.</span></span></span></button></li>
+        <li><button type="button" class="step-btn" data-step="4"><span class="n">5</span><span><span class="t"><span data-l="vi">Giờ chăm sóc vào ví</span><span data-l="en">Care Hours added</span></span><span class="d"><span data-l="vi">Mục tiêu: trong khoảng <span data-b="claims.targetMinutes"></span> phút sau khi đủ chứng từ.</span><span data-l="en">Target: within about <span data-b="claims.targetMinutes"></span> minutes of complete documents.</span></span></span></button></li>
+        <li><button type="button" class="step-btn" data-step="5"><span class="n">6</span><span><span class="t"><span data-l="vi">Đặt dịch vụ</span><span data-l="en">Book services</span></span><span class="d"><span data-l="vi">Chọn giờ, xem ai đến, theo dõi trực tiếp.</span><span data-l="en">Pick a time, see who's coming, track them live.</span></span></span></button></li>
       </ol>
       <div class="step-nav">
         <button type="button" class="btn btn-ghost btn-sm" id="stepPrev"><span data-l="vi">Bước trước</span><span data-l="en">Previous</span></button>
@@ -904,8 +905,22 @@ input[type="range"]{width:100%;height:44px;accent-color:var(--coral);cursor:poin
             <div class="m-btn"><span data-l="vi">Gửi hồ sơ</span><span data-l="en">Submit</span></div>
           </div>
         </div>
-        <!-- Screen 4: wallet credited -->
+        <!-- Screen 4: claim under review -->
         <div class="scr" data-scr="3">
+          <div class="app-h"><span data-l="vi">Đang thẩm định</span><span data-l="en">Under review</span></div>
+          <div class="body">
+            <div class="m-card"><div class="m-row"><span data-l="vi">Trạng thái</span><span data-l="en">Status</span><span style="color:#1D7550;font-weight:600"><span data-l="vi">Đang xử lý</span><span data-l="en">In review</span></span></div></div>
+            <div class="m-doc"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D7550" stroke-width="2" aria-hidden="true"><path d="M6 3h8l4 4v14H6Z"/><path d="m9 14 2 2 4-4"/></svg><span><b data-l="vi">Giấy xác nhận của bác sĩ</b><b data-l="en">Doctor's note</b><br><span style="color:#5B6580">IMG_0412.jpg</span></span></div>
+            <div class="m-doc"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D7550" stroke-width="2" aria-hidden="true"><path d="M6 3h8l4 4v14H6Z"/><path d="m9 14 2 2 4-4"/></svg><span><b data-l="vi">Phim X-quang</b><b data-l="en">X-ray report</b><br><span style="color:#5B6580">IMG_0413.jpg</span></span></div>
+            <div class="m-card navy">
+              <div class="m-label"><span data-l="vi">TPA đang đối chiếu điều kiện gói bảo hiểm</span><span data-l="en">TPA is checking against your policy conditions</span></div>
+              <div class="m-meter"><span style="width:55%"></span></div>
+            </div>
+            <p style="color:#5B6580;font-size:12px"><span data-l="vi">Dự kiến hoàn tất trong khoảng <span data-b="claims.targetMinutes"></span> phút.</span><span data-l="en">Expected to finish in about <span data-b="claims.targetMinutes"></span> minutes.</span></p>
+          </div>
+        </div>
+        <!-- Screen 5: wallet credited -->
+        <div class="scr" data-scr="4">
           <div class="app-h"><span data-l="vi">Ví Chăm sóc</span><span data-l="en">Care Wallet</span></div>
           <div class="body">
             <span class="m-ok">✓ <span data-l="vi">Đã duyệt</span><span data-l="en">Approved</span></span>
@@ -919,8 +934,8 @@ input[type="range"]{width:100%;height:44px;accent-color:var(--coral);cursor:poin
             <div class="m-btn"><span data-l="vi">Đặt dịch vụ</span><span data-l="en">Book a service</span></div>
           </div>
         </div>
-        <!-- Screen 5: booking + tracking -->
-        <div class="scr" data-scr="4">
+        <!-- Screen 6: booking + tracking -->
+        <div class="scr" data-scr="5">
           <div class="app-h"><span data-l="vi">Lịch hôm nay</span><span data-l="en">Today</span></div>
           <div class="body">
             <div class="m-card navy">
