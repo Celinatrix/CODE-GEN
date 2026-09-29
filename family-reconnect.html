@@ -914,6 +914,10 @@ section{padding-block:clamp(64px, 9vw, 120px);scroll-margin-top:72px}
           <div class="range-out"><span class="flabel"><span data-l="vi">Số tiền bảo hiểm mỗi người</span><span data-l="en">Sum assured per parent</span></span><output id="saOut"></output></div>
           <p class="fine"><span data-l="vi">Cố định cho mọi gia đình tham gia gói này.</span><span data-l="en">Fixed for every family in this plan.</span></p>
         </div>
+        <div class="field">
+          <div class="range-out"><span class="flabel"><span data-l="vi">Thời hạn hợp đồng</span><span data-l="en">Policy term</span></span><output id="termOut"></output></div>
+          <p class="fine"><span data-l="vi">Cố định cho mọi gia đình tham gia gói này.</span><span data-l="en">Fixed for every family in this plan.</span></p>
+        </div>
         <label class="switch" for="rider">
           <span><span data-l="vi">Thêm Ví Chăm sóc Gia đình</span><span data-l="en">Add the Family Care Wallet</span><small><span data-l="vi">Quyền lợi bổ sung, có thể bỏ</span><span data-l="en">Optional rider</span></small></span>
           <input type="checkbox" id="rider" checked>
@@ -1360,7 +1364,7 @@ function renderClaimsDemo(){
 /* =========================================================
    7. PREMIUM ESTIMATOR
    ========================================================= */
-const est = { term: 15, kids: 2 }; // fixed: policy term and number of children are no longer user-adjustable
+const est = { term: 10, kids: 2 }; // fixed: policy term and number of children are no longer user-adjustable
 function rateFor(age){
   return (PRICING_CONFIG.ratePerMillion.find(r => age <= r.maxAge) || PRICING_CONFIG.ratePerMillion.at(-1)).rate;
 }
@@ -1375,6 +1379,7 @@ function renderEstimate(){
   const rider = $('#rider').checked;
   const sa = BENEFITS.term.sumAssured.fixed;
   $('#saOut').textContent = fmtMoney(sa);
+  $('#termOut').textContent = est.term + ' ' + T('năm', 'years');
   $('#age2Field').hidden = !both;
 
   const a1 = clampAge($('#age1')), a2 = clampAge($('#age2'));
