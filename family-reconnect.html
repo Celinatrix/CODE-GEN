@@ -1364,11 +1364,11 @@ function fmtDec(n, digits){
   return lang() === 'vi' ? s.replace('.', ',') : s;
 }
 function fmtMoney(v){
-  if (v >= 1e9) return lang() === 'vi' ? fmtDec(v / 1e9, 1) + ' tỷ' : 'VND ' + fmtDec(v / 1e9, 1) + 'bn';
-  return lang() === 'vi' ? fmtDec(v / 1e6, 0) + ' triệu' : 'VND ' + fmtDec(v / 1e6, 0) + 'm';
+  if (v >= 1e9) return lang() === 'vi' ? fmtDec(v / 1e9, 1) + ' tỷ' : 'VND ' + fmtDec(v / 1e9, 1) + ' billion';
+  return lang() === 'vi' ? fmtDec(v / 1e6, 0) + ' triệu' : 'VND ' + fmtDec(v / 1e6, 0) + ' million';
 }
 function fmtMillions(v){ // premiums
-  return lang() === 'vi' ? fmtDec(v / 1e6, 1) + ' triệu đ' : 'VND ' + fmtDec(v / 1e6, 1) + 'm';
+  return lang() === 'vi' ? fmtDec(v / 1e6, 1) + ' triệu đ' : 'VND ' + fmtDec(v / 1e6, 1) + ' million';
 }
 const T = (vi, en) => lang() === 'vi' ? vi : en;
 
