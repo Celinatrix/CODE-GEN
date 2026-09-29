@@ -212,13 +212,8 @@ section{padding-block:clamp(64px, 9vw, 120px);scroll-margin-top:72px}
 }
 
 /* =========================================================
-   6. CARE WALLET — tabs, ladder, Pathway B demo
+   6. CARE WALLET — ladder
    ========================================================= */
-.tabs{display:inline-flex;flex-wrap:wrap;gap:6px;padding:5px;border-radius:16px;background:var(--surface);border:1px solid var(--line);margin-bottom:28px}
-.tab{min-height:48px;padding:10px 18px;border:0;border-radius:12px;background:transparent;cursor:pointer;font-weight:600;font-size:15px;color:var(--ink-2);text-align:left}
-.tab small{display:block;font-weight:500;font-size:12px;color:var(--ink-3)}
-.tab[aria-selected="true"]{background:var(--navy);color:var(--navy-ink)}
-.tab[aria-selected="true"] small{color:var(--navy-ink-2)}
 .panel-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(20px,3vw,40px);align-items:start}
 .ladder{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .rung{display:grid;grid-template-columns:minmax(0,1fr) 88px;gap:8px 16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px}
@@ -236,37 +231,7 @@ section{padding-block:clamp(64px, 9vw, 120px);scroll-margin-top:72px}
 .aside-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px;display:grid;gap:14px}
 .aside-card h3{font-size:21px}
 .aside-card ul{margin:0;padding-left:20px;display:grid;gap:8px;color:var(--ink-2);font-size:15px}
-
-/* Pathway B demo */
-.acts{display:grid;gap:10px}
-.act{border:1px solid var(--line);background:var(--surface);border-radius:var(--radius);padding:14px 16px;margin:0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 16px;align-items:center}
-.act legend{float:left;padding:0;font-weight:600;font-size:15px;line-height:1.35}
-.act legend small{display:block;font-weight:400;color:var(--ink-3);font-size:13px}
-.seg{display:grid;grid-template-columns:repeat(4,44px);gap:4px;border-radius:12px}
-.seg input{position:absolute;opacity:0;pointer-events:none}
-.seg label{display:grid;place-items:center;min-height:44px;border-radius:10px;border:1px solid var(--line);font-weight:700;font-size:14px;cursor:pointer;background:var(--bg);transition:background-color .15s ease}
-.seg input:checked + label{background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}
-.seg input:focus-visible + label{outline:3px solid var(--focus);outline-offset:2px}
-.levels-key{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-3);margin-bottom:12px}
-.levels-key b{color:var(--ink)}
-.result{position:sticky;top:92px;background:var(--navy);color:var(--navy-ink);border-radius:var(--radius-lg);padding:24px;display:grid;gap:16px}
-.result .r-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.result .r-label{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--navy-ink-2);font-weight:600}
-.result .r-score{font-variant-numeric:tabular-nums;font-weight:600}
-.result .r-big{font-family:var(--font-display);font-size:64px;line-height:1;font-variant-numeric:tabular-nums}
-.result .r-big small{font-family:var(--font-ui);font-size:18px;color:var(--navy-ink-2);margin-left:6px}
-.tier-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
-.tier-bar i{height:10px;border-radius:3px;background:rgb(255 255 255 / .14)}
-.tier-bar i.on{background:var(--card-accent)}
-.tier-ticks{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;font-size:11px;color:var(--navy-ink-2);font-variant-numeric:tabular-nums}
-.unlock{list-style:none;margin:0;padding:0;display:grid;gap:6px}
-.unlock li{display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 10px;border-radius:10px;background:rgb(255 255 255 / .06);color:var(--navy-ink-2)}
-.unlock li.on{background:rgb(255 255 255 / .12);color:var(--navy-ink)}
-.unlock li .chk{width:20px;height:20px;border-radius:50%;border:1.5px solid rgb(255 255 255 / .3);display:grid;place-items:center;flex:none}
-.unlock li.on .chk{background:#62CC99;border-color:#62CC99;color:#0D1525}
-.result .fine{color:var(--navy-ink-2)}
-@media (max-width: 900px){ .panel-grid{grid-template-columns:1fr} .result{position:static} }
-@media (max-width: 480px){ .act{grid-template-columns:1fr} .seg{grid-template-columns:repeat(4,1fr)} }
+@media (max-width: 900px){ .panel-grid{grid-template-columns:1fr} }
 
 /* =========================================================
    7. SERVICES
@@ -654,8 +619,8 @@ section{padding-block:clamp(64px, 9vw, 120px);scroll-margin-top:72px}
         <article class="layer" data-layer="wallet">
           <div class="l-top"><span class="l-kicker"><span data-l="vi">Lớp 2 · Quyền lợi bổ sung</span><span data-l="en">Layer 2 · Rider</span></span><span class="state"></span></div>
           <h3><span data-l="vi">Ví Chăm sóc Gia đình</span><span data-l="en">Family Care Wallet</span></h3>
-          <p class="l-what" data-when="0"><span data-l="vi">Nằm viện từ <span data-b="pathwayA.h3.days"></span> ngày: <b data-b="pathwayA.h3.hours"></b>–<b data-b="pathwayA.h7.hours"></b> Giờ chăm sóc. Hồi phục tại nhà: từ <b data-b="pathwayB.tiers.1.hours"></b> giờ.</span><span data-l="en">Hospital stay of <span data-b="pathwayA.h3.days"></span>+ days: <b data-b="pathwayA.h3.hours"></b>–<b data-b="pathwayA.h7.hours"></b> Care Hours. Recovering at home: from <b data-b="pathwayB.tiers.1.hours"></b> hours.</span></p>
-          <p class="l-what" data-when="1"><span data-l="vi"><span data-b="pathwayA.h14.days"></span> ngày hoặc <span data-b="pathwayA.h14.icuHours"></span> giờ ICU: <b data-b="pathwayA.h14.hours"></b> giờ. Cả bố mẹ cùng nằm viện: <b data-b="pathwayA.both.hours"></b> giờ. Hồi phục tại nhà: đến <b data-b="pathwayB.tiers.4.hours"></b> giờ.</span><span data-l="en"><span data-b="pathwayA.h14.days"></span> days or <span data-b="pathwayA.h14.icuHours"></span> hours in ICU: <b data-b="pathwayA.h14.hours"></b> hours. Both parents in hospital: <b data-b="pathwayA.both.hours"></b> hours. Home recovery: up to <b data-b="pathwayB.tiers.4.hours"></b> hours.</span></p>
+          <p class="l-what" data-when="0"><span data-l="vi">Nằm viện từ <span data-b="pathwayA.h3.days"></span> ngày: <b data-b="pathwayA.h3.hours"></b>–<b data-b="pathwayA.h7.hours"></b> Giờ chăm sóc.</span><span data-l="en">Hospital stay of <span data-b="pathwayA.h3.days"></span>+ days: <b data-b="pathwayA.h3.hours"></b>–<b data-b="pathwayA.h7.hours"></b> Care Hours.</span></p>
+          <p class="l-what" data-when="1"><span data-l="vi"><span data-b="pathwayA.h14.days"></span> ngày hoặc <span data-b="pathwayA.h14.icuHours"></span> giờ ICU: <b data-b="pathwayA.h14.hours"></b> giờ. Cả bố mẹ cùng nằm viện: <b data-b="pathwayA.both.hours"></b> giờ.</span><span data-l="en"><span data-b="pathwayA.h14.days"></span> days or <span data-b="pathwayA.h14.icuHours"></span> hours in ICU: <b data-b="pathwayA.h14.hours"></b> hours. Both parents in hospital: <b data-b="pathwayA.both.hours"></b> hours.</span></p>
           <p class="l-what" data-when="2,3"><span data-l="vi">Giờ còn lại trong ví vẫn dùng được trong thời gian điều chỉnh ban đầu.</span><span data-l="en">Any hours left in the wallet can still be used while the family adjusts.</span></p>
         </article>
         <article class="layer" data-layer="everyday">
@@ -681,19 +646,7 @@ section{padding-block:clamp(64px, 9vw, 120px);scroll-margin-top:72px}
       <p class="lead" data-l="en">When a qualifying health event happens, Care Hours land in your wallet. Each hour buys one hour of service from a vetted partner. Hours stay valid for <b data-b="wallet.validityMonths"></b> months.</p>
     </div>
 
-    <div class="tabs" role="tablist" aria-label="Hai cách nhận Giờ chăm sóc" data-vi-aria="Hai cách nhận Giờ chăm sóc" data-en-aria="Two ways to earn Care Hours">
-      <button type="button" class="tab" role="tab" id="tab-a" aria-selected="true" aria-controls="panel-a" tabindex="0">
-        <span data-l="vi">Khi nằm viện</span><span data-l="en">In hospital</span>
-        <small><span data-l="vi">Cách A · Duyệt ngay</span><span data-l="en">Pathway A · Instant</span></small>
-      </button>
-      <button type="button" class="tab" role="tab" id="tab-b" aria-selected="false" aria-controls="panel-b" tabindex="-1">
-        <span data-l="vi">Khi hồi phục tại nhà</span><span data-l="en">Recovering at home</span>
-        <small><span data-l="vi">Cách B · Bảng hỏi 6 câu</span><span data-l="en">Pathway B · 6 questions</span></small>
-      </button>
-    </div>
-
-    <!-- Pathway A: benefit ladder -->
-    <div class="panel-grid" role="tabpanel" id="panel-a" aria-labelledby="tab-a">
+    <div class="panel-grid" id="panel-a">
       <ol class="ladder">
         <li class="rung">
           <div class="r-when"><span data-l="vi">Nằm viện <span data-b="pathwayA.h3.days"></span> ngày</span><span data-l="en"><span data-b="pathwayA.h3.days"></span> days in hospital</span></div>
@@ -732,38 +685,6 @@ section{padding-block:clamp(64px, 9vw, 120px);scroll-margin-top:72px}
           <li data-l="vi">Chế độ Khẩn cấp Gia đình áp dụng khi thời gian nằm viện của bố và mẹ trùng nhau. Người trông trẻ được ưu tiên điều phối.</li>
           <li data-l="en">Family Emergency Mode applies when both parents' hospital stays overlap. Childcare is dispatched with priority.</li>
         </ul>
-      </aside>
-    </div>
-
-    <!-- Pathway B: interactive demo -->
-    <div class="panel-grid" role="tabpanel" id="panel-b" aria-labelledby="tab-b" hidden>
-      <div>
-        <p class="lead" style="margin-bottom:14px" data-l="vi">Sau mổ, gãy xương hay bệnh cần nghỉ ở nhà, bạn trả lời 6 câu: mình còn tự làm được những việc chăm con nào? Thử chọn mức độ bên dưới.</p>
-        <p class="lead" style="margin-bottom:14px" data-l="en">After surgery, a fracture or an illness that keeps you at home, you answer 6 questions: which childcare tasks can you still manage? Try it below.</p>
-        <div class="levels-key" id="levelsKey">
-          <span><b>F0</b> <span data-l="vi">Tự làm được</span><span data-l="en">Can do it</span></span>
-          <span><b>F1</b> <span data-l="vi">Làm được nhưng khó</span><span data-l="en">With difficulty</span></span>
-          <span><b>F2</b> <span data-l="vi">Cần người giúp một phần</span><span data-l="en">Need some help</span></span>
-          <span><b>F3</b> <span data-l="vi">Không tự làm được</span><span data-l="en">Can't do it</span></span>
-        </div>
-        <div class="acts" id="acts"><!-- built from BENEFITS.pathwayB.activities --></div>
-      </div>
-      <aside class="result" aria-live="polite" aria-atomic="true">
-        <div class="r-row">
-          <span class="r-label"><span data-l="vi">Điểm Suy giảm Khả năng Chăm sóc</span><span data-l="en">Caregiving Incapacity Score</span></span>
-          <span class="r-score" id="cisScore">0/18</span>
-        </div>
-        <div class="r-big" id="cisHours">0<small><span data-l="vi">giờ</span><span data-l="en">hrs</span></small></div>
-        <div>
-          <div class="tier-bar" id="tierBar"><i></i><i></i><i></i><i></i><i></i></div>
-          <div class="tier-ticks" id="tierTicks"></div>
-        </div>
-        <p id="cisMsg"></p>
-        <div>
-          <p class="r-label" style="margin-bottom:8px"><span data-l="vi">Dịch vụ được mở</span><span data-l="en">Services unlocked</span></p>
-          <ul class="unlock" id="unlockList"></ul>
-        </div>
-        <p class="fine"><span data-l="vi">Bản demo. Kết quả chính thức cần thêm giấy xác nhận của bác sĩ.</span><span data-l="en">Demo only. An official result also needs a doctor's note.</span></p>
       </aside>
     </div>
   </div>
@@ -844,13 +765,13 @@ section{padding-block:clamp(64px, 9vw, 120px);scroll-margin-top:72px}
       <div class="sec-head" style="margin-bottom:24px">
         <p class="eyebrow"><span data-l="vi">Bồi thường trong ứng dụng</span><span data-l="en">Claims in the app</span></p>
         <h2 id="claims-title"><span data-l="vi">Sáu bước, không cần đến văn phòng</span><span data-l="en">Six steps. No office visit.</span></h2>
-        <p class="lead" data-l="vi"><span class="tag">Kịch bản minh họa</span> Anh Minh gãy tay, bác sĩ yêu cầu nghỉ ở nhà 6 tuần. Đây là những gì anh thấy trên điện thoại.</p>
-        <p class="lead" data-l="en"><span class="tag">Illustrative scenario</span> Minh breaks his arm and is told to rest at home for 6 weeks. This is what he sees on his phone.</p>
+        <p class="lead" data-l="vi"><span class="tag">Kịch bản minh họa</span> Anh Minh gãy tay, phải nhập viện phẫu thuật và nằm viện 7 ngày. Đây là những gì anh thấy trên điện thoại.</p>
+        <p class="lead" data-l="en"><span class="tag">Illustrative scenario</span> Minh breaks his arm, needs surgery, and spends 7 days in hospital. This is what he sees on his phone.</p>
       </div>
       <div class="progress" aria-hidden="true"><span id="stepProgress"></span></div>
       <ol class="steps" id="steps">
         <li><button type="button" class="step-btn" data-step="0"><span class="n">1</span><span><span class="t"><span data-l="vi">Báo sự kiện</span><span data-l="en">Report the event</span></span><span class="d"><span data-l="vi">Chọn ai bị ảnh hưởng và chuyện gì đã xảy ra.</span><span data-l="en">Choose who's affected and what happened.</span></span></span></button></li>
-        <li><button type="button" class="step-btn" data-step="1"><span class="n">2</span><span><span class="t"><span data-l="vi">Sàng lọc</span><span data-l="en">Screening</span></span><span class="d"><span data-l="vi">Nằm viện: duyệt ngay, không cần đánh giá. Hồi phục tại nhà: trả lời 6 câu hỏi.</span><span data-l="en">In hospital: approved instantly, no assessment. At home: answer 6 questions.</span></span></span></button></li>
+        <li><button type="button" class="step-btn" data-step="1"><span class="n">2</span><span><span class="t"><span data-l="vi">Sàng lọc</span><span data-l="en">Screening</span></span><span class="d"><span data-l="vi">Duyệt ngay, không cần đánh giá — chỉ dựa trên số ngày nằm viện.</span><span data-l="en">Approved instantly, no assessment — based only on the number of days admitted.</span></span></span></button></li>
         <li><button type="button" class="step-btn" data-step="2"><span class="n">3</span><span><span class="t"><span data-l="vi">Tải chứng từ y tế</span><span data-l="en">Upload medical proof</span></span><span class="d"><span data-l="vi">Chụp giấy ra viện hoặc giấy xác nhận của bác sĩ.</span><span data-l="en">Snap your discharge paper or doctor's note.</span></span></span></button></li>
         <li><button type="button" class="step-btn" data-step="3"><span class="n">4</span><span><span class="t"><span data-l="vi">Đang thẩm định hồ sơ</span><span data-l="en">Claim under review</span></span><span class="d"><span data-l="vi">TPA đối chiếu chứng từ với điều kiện gói bảo hiểm.</span><span data-l="en">The TPA checks your documents against the policy conditions.</span></span></span></button></li>
         <li><button type="button" class="step-btn" data-step="4"><span class="n">5</span><span><span class="t"><span data-l="vi">Giờ chăm sóc vào ví</span><span data-l="en">Care Hours added</span></span><span class="d"><span data-l="vi">Mục tiêu: trong khoảng <span data-b="claims.targetMinutes"></span> phút sau khi đủ chứng từ.</span><span data-l="en">Target: within about <span data-b="claims.targetMinutes"></span> minutes of complete documents.</span></span></span></button></li>
@@ -874,22 +795,21 @@ section{padding-block:clamp(64px, 9vw, 120px);scroll-margin-top:72px}
             <div class="m-opt">Lan</div>
             <div class="m-opt"><span data-l="vi">Bé Na</span><span data-l="en">Na</span></div>
             <div class="m-label" style="margin-top:6px"><span data-l="vi">Chuyện gì đã xảy ra?</span><span data-l="en">What happened?</span></div>
-            <div class="m-opt"><span data-l="vi">Đang nằm viện</span><span data-l="en">In hospital</span></div>
-            <div class="m-opt sel"><span data-l="vi">Hồi phục tại nhà</span><span data-l="en">Recovering at home</span><span style="margin-left:auto">✓</span></div>
+            <div class="m-opt sel"><span data-l="vi">Đang nằm viện</span><span data-l="en">In hospital</span><span style="margin-left:auto">✓</span></div>
             <div class="m-btn"><span data-l="vi">Tiếp tục</span><span data-l="en">Continue</span></div>
           </div>
         </div>
         <!-- Screen 2: screening -->
         <div class="scr" data-scr="1">
-          <div class="app-h"><span data-l="vi">Sàng lọc · 6 câu</span><span data-l="en">Screening · 6 questions</span></div>
+          <div class="app-h"><span data-l="vi">Sàng lọc</span><span data-l="en">Screening</span></div>
           <div class="body">
-            <div class="m-card"><div class="m-row"><span data-l="vi">Bế con</span><span data-l="en">Lifting your child</span><b>F3</b></div></div>
-            <div class="m-card"><div class="m-row"><span data-l="vi">Nấu ăn</span><span data-l="en">Cooking</span><b>F3</b></div></div>
-            <div class="m-card"><div class="m-row"><span data-l="vi">Tắm cho con</span><span data-l="en">Bathing your child</span><b>F3</b></div></div>
-            <div class="m-card"><div class="m-row"><span data-l="vi">Đưa đón con</span><span data-l="en">School runs</span><b>F3</b></div></div>
-            <div class="m-card"><div class="m-row"><span data-l="vi">Dọn dẹp</span><span data-l="en">Cleaning</span><b>F3</b></div></div>
-            <div class="m-card"><div class="m-row"><span data-l="vi">Trông con ban đêm</span><span data-l="en">Night-time care</span><b>F2</b></div></div>
-            <div class="m-card navy"><div class="m-row"><span data-l="vi">Điểm</span><span data-l="en">Score</span><b class="num"><span id="demoScore">17</span>/18</b></div></div>
+            <span class="m-ok">✓ <span data-l="vi">Không cần đánh giá</span><span data-l="en">No assessment needed</span></span>
+            <div class="m-card"><div class="m-row"><span data-l="vi">Bệnh viện</span><span data-l="en">Hospital</span><b><span data-l="vi">BV Quận 7</span><span data-l="en">District 7 Hospital</span></b></div></div>
+            <div class="m-card"><div class="m-row"><span data-l="vi">Số ngày nằm viện</span><span data-l="en">Days admitted</span><b class="num"><span data-b="pathwayA.h7.days"></span> <span data-l="vi">ngày</span><span data-l="en">days</span></b></div></div>
+            <div class="m-card navy">
+              <div class="m-label"><span data-l="vi">Mốc đạt được</span><span data-l="en">Level reached</span></div>
+              <div class="m-big"><span data-b="pathwayA.h7.hours"></span><span style="font-size:15px;font-family:var(--font-ui)"> <span data-l="vi">giờ</span><span data-l="en">hrs</span></span></div>
+            </div>
           </div>
         </div>
         <!-- Screen 3: upload -->
@@ -927,7 +847,7 @@ section{padding-block:clamp(64px, 9vw, 120px);scroll-margin-top:72px}
               <div class="m-big"><span data-b="demo.walletTotal"></span><span style="font-size:15px;font-family:var(--font-ui)"> <span data-l="vi">giờ</span><span data-l="en">hrs</span></span></div>
               <div class="m-meter"><span style="width:100%"></span></div>
             </div>
-            <div class="m-card"><div class="m-row"><span data-l="vi">Hồi phục tại nhà · 17/18 điểm</span><span data-l="en">Home recovery · score 17/18</span><b>+<span data-b="demo.walletTotal"></span></b></div></div>
+            <div class="m-card"><div class="m-row"><span data-l="vi">Nằm viện <span data-b="pathwayA.h7.days"></span> ngày</span><span data-l="en"><span data-b="pathwayA.h7.days"></span> days in hospital</span><b>+<span data-b="demo.walletTotal"></span></b></div></div>
             <p style="color:#5B6580;font-size:12px"><span data-l="vi">Có hiệu lực <span data-b="wallet.validityMonths"></span> tháng.</span><span data-l="en">Valid for <span data-b="wallet.validityMonths"></span> months.</span></p>
             <div class="m-btn"><span data-l="vi">Đặt dịch vụ</span><span data-l="en">Book a service</span></div>
           </div>
@@ -1145,10 +1065,6 @@ section{padding-block:clamp(64px, 9vw, 120px);scroll-margin-top:72px}
         <div class="ans"><p data-l="vi">Có. Con nằm viện từ <span data-b="pathwayA.child.days"></span> ngày, ví nhận <b data-b="pathwayA.child.hours"></b> giờ. Bạn có thể dùng để có người lo việc nhà hoặc trông bé còn lại trong lúc bạn ở viện với con.</p><p data-l="en">Yes. If your child stays in hospital for <span data-b="pathwayA.child.days"></span> days, your wallet gets <b data-b="pathwayA.child.hours"></b> hours, for help at home or care for your other kids while you're at the hospital.</p></div>
       </details>
       <details>
-        <summary><span data-l="vi">Tôi không nằm viện nhưng phải nghỉ ở nhà thì sao?</span><span data-l="en">I'm not in hospital but have to rest at home?</span><span class="pm" aria-hidden="true">+</span></summary>
-        <div class="ans"><p data-l="vi">Bạn dùng Cách B: trả lời 6 câu hỏi về các việc chăm con hằng ngày và gửi giấy xác nhận của bác sĩ. Tùy mức độ, ví nhận <span data-b="pathwayB.tiers.1.hours"></span>, <span data-b="pathwayB.tiers.2.hours"></span>, <span data-b="pathwayB.tiers.3.hours"></span> hoặc <span data-b="pathwayB.tiers.4.hours"></span> giờ.</p><p data-l="en">Use Pathway B: answer 6 questions about everyday childcare tasks and send a doctor's note. Depending on the level, your wallet gets <span data-b="pathwayB.tiers.1.hours"></span>, <span data-b="pathwayB.tiers.2.hours"></span>, <span data-b="pathwayB.tiers.3.hours"></span> or <span data-b="pathwayB.tiers.4.hours"></span> hours.</p></div>
-      </details>
-      <details>
         <summary><span data-l="vi">Bao lâu thì giờ vào ví?</span><span data-l="en">How fast do hours arrive?</span><span class="pm" aria-hidden="true">+</span></summary>
         <div class="ans"><p data-l="vi">Mục tiêu là trong khoảng <span data-b="claims.targetMinutes"></span> phút sau khi hồ sơ đầy đủ. Trường hợp nằm viện được duyệt ngay, không cần đánh giá.</p><p data-l="en">Our target is about <span data-b="claims.targetMinutes"></span> minutes once your documents are complete. Hospital stays are approved instantly with no assessment.</p></div>
       </details>
@@ -1283,25 +1199,6 @@ const BENEFITS = {
     both:  { hours: 100 },                     // both parents, overlapping stays = Family Emergency Mode
     child: { days: 5,  hours: 15 }
   },
-  pathwayB: {                                  // home recovery — Caregiving Incapacity Score
-    maxLevel: 3,                               // F0..F3 per activity
-    unlockLevel: 2,                            // activity at >= F2 unlocks its service
-    tiers: [                                   // total score (0..18) -> hours
-      { min: 0,  max: 3,  hours: 0  },
-      { min: 4,  max: 7,  hours: 20 },
-      { min: 8,  max: 11, hours: 40 },
-      { min: 12, max: 15, hours: 60 },
-      { min: 16, max: 18, hours: 80 }
-    ],
-    activities: [
-      { id: 'carry',  svc: 'childcare',    vi: 'Bế, bồng và chăm con nhỏ', en: 'Lifting and carrying your child',  default: 2 },
-      { id: 'meals',  svc: 'meals',        vi: 'Chuẩn bị bữa ăn cho cả nhà', en: 'Preparing family meals',        default: 1 },
-      { id: 'bath',   svc: 'childcare',    vi: 'Tắm rửa, vệ sinh cho con', en: 'Bathing and changing your child',  default: 2 },
-      { id: 'school', svc: 'school',       vi: 'Đưa đón con đi học', en: 'School drop-off and pick-up',            default: 3 },
-      { id: 'house',  svc: 'housekeeping', vi: 'Dọn dẹp, giặt giũ', en: 'Cleaning and laundry',                   default: 2 },
-      { id: 'night',  svc: 'childcare',    vi: 'Trông con ban đêm', en: 'Night-time care',                        default: 1 }
-    ]
-  },
   wallet: { validityMonths: 12 },
   services: {                                  // Care Hours consumed per unit of service
     childcare:    { perHour: 1, vi: 'Trông trẻ', en: 'Childcare' },
@@ -1319,7 +1216,7 @@ const BENEFITS = {
   },
   waiting: { illnessDays: 30, accidentDays: 0, preExistingMonths: 24 },
   claims: { targetMinutes: 15 },
-  demo: { walletTotal: 80, walletUsed: 18 }    // claims-stepper story (score 17 -> top tier)
+  demo: { walletTotal: 40, walletUsed: 12 }    // claims-stepper story (hospital stay of 7 days -> h7 tier)
 };
 
 /* =========================================================
@@ -1393,7 +1290,7 @@ function setLang(l){
   document.title = 'Family Reconnect';
   store.set('fr-lang', l);
   applyBindings();
-  renderPathwayB(); renderContinuum(); renderEstimate(); renderClaimsDemo(); buildTermKids(true);
+  renderContinuum(); renderEstimate(); renderClaimsDemo(); buildTermKids(true);
 }
 $$('[data-set-lang]').forEach(b => b.addEventListener('click', () => setLang(b.dataset.setLang)));
 
@@ -1447,60 +1344,9 @@ function renderContinuum(){
 $$('.stage').forEach(b => b.addEventListener('click', () => { stage = +b.dataset.stage; renderContinuum(); }));
 
 /* =========================================================
-   4. CARE WALLET — tabs (arrow-key support)
+   4. CARE WALLET — ladder bars
    ========================================================= */
-const tabs = $$('[role="tab"]');
-function selectTab(tab){
-  tabs.forEach(t => {
-    const sel = t === tab;
-    t.setAttribute('aria-selected', String(sel)); t.tabIndex = sel ? 0 : -1;
-    $('#' + t.getAttribute('aria-controls')).hidden = !sel;
-  });
-  if (tab.id === 'tab-a') growBars();
-}
-tabs.forEach((t, i) => {
-  t.addEventListener('click', () => selectTab(t));
-  t.addEventListener('keydown', e => {
-    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
-    const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length];
-    n.focus(); selectTab(n);
-  });
-});
 function growBars(){ $$('[data-bar]').forEach(el => { el.style.width = el.dataset.w; }); }
-
-/* Pathway B demo */
-const cis = BENEFITS.pathwayB;
-const maxScore = cis.activities.length * cis.maxLevel;
-function buildActs(){
-  $('#acts').innerHTML = cis.activities.map((a, i) => `
-    <fieldset class="act">
-      <legend><span data-l="vi">${a.vi}</span><span data-l="en">${a.en}</span></legend>
-      <div class="seg">
-        ${[0,1,2,3].map(lv => `<input type="radio" name="act-${a.id}" id="act-${a.id}-${lv}" value="${lv}" ${lv === a.default ? 'checked' : ''}><label for="act-${a.id}-${lv}">F${lv}</label>`).join('')}
-      </div>
-    </fieldset>`).join('');
-  $('#acts').addEventListener('change', renderPathwayB);
-  $('#tierTicks').innerHTML = cis.tiers.map(t => `<span>${t.min}–${t.max}</span>`).join('');
-}
-function renderPathwayB(){
-  const levels = cis.activities.map(a => +($(`input[name="act-${a.id}"]:checked`) || { value: 0 }).value);
-  const score = levels.reduce((s, v) => s + v, 0);
-  const tierIdx = cis.tiers.findIndex(t => score >= t.min && score <= t.max);
-  const hours = cis.tiers[tierIdx].hours;
-  $('#cisScore').textContent = score + '/' + maxScore;
-  $('#cisHours').firstChild.nodeValue = hours;
-  $$('#tierBar i').forEach((b, i) => b.classList.toggle('on', i <= tierIdx && tierIdx > 0));
-  $('#cisMsg').textContent = hours === 0
-    ? T('Bạn vẫn tự lo được phần lớn việc chăm con. Chưa đủ điều kiện nhận giờ, nhưng vẫn dùng được bác sĩ trực tuyến và giờ tặng hằng năm.',
-        'You can still handle most childcare. Not eligible for hours yet, but telehealth and your complimentary hours are there.')
-    : T(`Ví của bạn sẽ nhận ${hours} Giờ chăm sóc, dùng trong ${BENEFITS.wallet.validityMonths} tháng.`,
-        `Your wallet would receive ${hours} Care Hours, valid for ${BENEFITS.wallet.validityMonths} months.`);
-  const unlocked = new Set(cis.activities.filter((a, i) => levels[i] >= cis.unlockLevel).map(a => a.svc));
-  $('#unlockList').innerHTML = Object.entries(BENEFITS.services).map(([k, s]) => {
-    const on = hours > 0 && unlocked.has(k);
-    return `<li class="${on ? 'on' : ''}"><span class="chk" aria-hidden="true">${on ? '✓' : ''}</span>${s[lang()]}<span class="visually-hidden">${on ? T(': đã mở', ': unlocked') : T(': chưa mở', ': locked')}</span></li>`;
-  }).join('');
-}
 
 /* =========================================================
    6. CLAIMS STEPPER
@@ -1646,7 +1492,6 @@ function initReveals(){
 /* =========================================================
    INIT
    ========================================================= */
-buildActs();
 initEstimator();
 initForm();
 setLang(store.get('fr-lang') === 'en' ? 'en' : 'vi');
